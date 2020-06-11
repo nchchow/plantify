@@ -1,0 +1,62 @@
+// VARIABLES
+// breakpoints
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1440px;
+
+// RESET
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+// BASE
+body,
+html {
+  margin: 0;
+}
+
+// MIXINS
+// font size
+@mixin setFontSizeLineHeight($font-size, $line-height) {
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+@mixin headerText() {
+  @include setFontSizeLineHeight(1.5rem, 2rem);
+  @include tablet() {
+    @include setFontSizeLineHeight(2.25rem, 2.75rem);
+  }
+}
+
+@mixin subHeaderText() {
+  @include setFontSizeLineHeight(0.875rem, 1.375rem);
+  @include tablet() {
+    @include setFontSizeLineHeight(1rem, 1.5rem);
+  }
+}
+
+@mixin paragraphText() {
+  @include setFontSizeLineHeight(0.8125rem, 1.125rem);
+  @include tablet() {
+    @include setFontSizeLineHeight(0.875rem, 1.375rem);
+  }
+}
+
+@mixin labelText() {
+  @include setFontSizeLineHeight(0.75rem, 1.25rem);
+}
+
+// screen size
+@mixin tablet() {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
