@@ -3,7 +3,7 @@ import Card from "./Card";
 
 const Catalog = () => {
   return (
-    <div className="catalog grid container">
+    <div className="catalog container">
       <Card />
       <Card />
       <Card />

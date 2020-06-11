@@ -1,20 +1,8 @@
 // VARIABLES
 // breakpoints
 $tablet-breakpoint: 768px;
-$desktop-breakpoint: 1440px;
-
-// RESET
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-// BASE
-body,
-html {
-  margin: 0;
-}
+$desktop-breakpoint: 1080px;
+$lg-desktop-breakpoint: 1440px;
 
 // MIXINS
 // font size
@@ -58,5 +46,62 @@ html {
 @mixin desktop() {
   @media screen and (min-width: $desktop-breakpoint) {
     @content;
+  }
+}
+
+@mixin lg-desktop() {
+  @media screen and (min-width: $lg-desktop-breakpoint) {
+    @content;
+  }
+}
+
+// RESET
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+// BASE
+body,
+html {
+  margin: 0;
+}
+
+// CONTAINERS
+.container {
+  margin: 0 auto;
+  width: 288px;
+
+  @include tablet() {
+    width: 720px;
+  }
+
+  @include desktop() {
+    width: 1016px;
+  }
+
+  @include lg-desktop() {
+    width: 1080px;
+  }
+}
+
+// CATALOG
+.catalog {
+  display: grid;
+  gap: 16px;
+
+  @include tablet() {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  @include desktop() {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+
+  @include lg-desktop() {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }

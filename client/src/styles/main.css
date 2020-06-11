@@ -9,4 +9,56 @@ body,
 html {
   margin: 0;
 }
+
+.container {
+  margin: 0 auto;
+  width: 288px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 720px;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .container {
+    width: 1016px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 1080px;
+  }
+}
+
+.catalog {
+  display: -ms-grid;
+  display: grid;
+  gap: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .catalog {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .catalog {
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .catalog {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
 /*# sourceMappingURL=main.css.map */
