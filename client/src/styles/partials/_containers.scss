@@ -1,0 +1,30 @@
+// CONTAINERS
+.container {
+  margin: 0 auto;
+  width: 288px;
+
+  @include tablet() {
+    width: 720px;
+  }
+
+  @include desktop() {
+    width: 1016px;
+  }
+
+  @include lg-desktop() {
+    width: 1080px;
+  }
+
+  &--fluid {
+    margin: 0;
+    width: auto;
+
+    @include tablet() {
+      margin: 0 24px;
+    }
+
+    @include lg-desktop() {
+      margin: 0 72px;
+    }
+  }
+}
