@@ -3,17 +3,38 @@ import Card from "./Card";
 
 const Catalog = () => {
   return (
-    <div className="catalog container">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-    </div>
+    <ul className="catalog container--fluid">
+      <li className="catalog__item">
+        <Card />
+      </li>
+      <li className="catalog__item">
+        <Card />
+      </li>
+      <li className="catalog__item">
+        <Card />
+      </li>
+      <li className="catalog__item">
+        <Card />
+      </li>
+      <li className="catalog__item">
+        <Card />
+      </li>
+      <li className="catalog__item">
+        <Card />
+      </li>
+      <li className="catalog__item">
+        <Card />
+      </li>
+      <li className="catalog__item">
+        <Card />
+      </li>
+      <li className="catalog__item">
+        <Card />
+      </li>
+      <li className="catalog__item">
+        <Card />
+      </li>
+    </ul>
   );
 };
 
