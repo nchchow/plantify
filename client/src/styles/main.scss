@@ -4,6 +4,9 @@ $tablet-breakpoint: 768px;
 $desktop-breakpoint: 1080px;
 $lg-desktop-breakpoint: 1440px;
 
+// fonts
+$font-main: "Roboto Condensed", sans-serif;
+
 // MIXINS
 // font size
 @mixin setFontSizeLineHeight($font-size, $line-height) {
@@ -66,6 +69,8 @@ $lg-desktop-breakpoint: 1440px;
 body,
 html {
   margin: 0;
+  font-family: $font-main;
+  letter-spacing: 0.05rem;
 }
 
 ul {
@@ -106,11 +111,11 @@ ul {
 
 // CATALOG
 .catalog {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
 
   @include tablet() {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
   }
@@ -125,7 +130,7 @@ ul {
 
   &__item {
     position: relative;
-    height: 75vw;
+    height: 93.75vw;
 
     @include tablet() {
       height: 33vw;
@@ -142,17 +147,22 @@ ul {
 }
 
 .overlay {
-  display: none;
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(245, 246, 252, 0.52),
-    rgba(117, 19, 93, 0.73)
-  );
+  display: flex;
+  align-items: flex-end;
+
+  @include tablet() {
+    border-radius: 8px;
+  }
+
+  @include desktop() {
+    display: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.3));
+  }
 }
 
 .card {
@@ -167,21 +177,38 @@ ul {
   }
 
   &:hover .overlay {
-    display: block;
+    display: flex;
   }
 
   &__img {
     object-fit: cover;
     object-position: center;
     width: 100%;
-    height: 100%;
+    height: 85%;
     border-radius: inherit;
+
+    @include desktop() {
+      height: 100%;
+    }
   }
 
   &__text {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    color: #fff;
+    @include desktop() {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    &--title {
+      margin: 0.5rem;
+      font-weight: 700;
+      color: #000;
+      @include subHeaderText();
+
+      @include desktop() {
+        margin: 1rem;
+        color: #fff;
+      }
+    }
   }
 }
