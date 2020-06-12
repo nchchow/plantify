@@ -1,5 +1,6 @@
 // CATALOG
 .catalog {
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
 
@@ -90,9 +91,14 @@
 
     &--title {
       margin: 0.5rem;
+      margin-left: 1rem;
       font-weight: 700;
       color: #000;
       @include subHeaderText();
+
+      @include tablet() {
+        margin-left: 0;
+      }
 
       @include desktop() {
         margin: 1rem;
