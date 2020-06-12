@@ -240,14 +240,14 @@ ul {
 }
 
 @media screen and (min-width: 1080px) {
-  .card__text {
+  .card__content {
     position: absolute;
     bottom: 0;
     left: 0;
   }
 }
 
-.card__text--title {
+.card__content--title {
   margin: 0.5rem;
   margin-left: 1rem;
   font-weight: 700;
@@ -257,20 +257,20 @@ ul {
 }
 
 @media screen and (min-width: 768px) {
-  .card__text--title {
+  .card__content--title {
     font-size: 1rem;
     line-height: 1.5rem;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .card__text--title {
+  .card__content--title {
     margin-left: 0;
   }
 }
 
 @media screen and (min-width: 1080px) {
-  .card__text--title {
+  .card__content--title {
     margin: 1rem;
     color: #fff;
   }

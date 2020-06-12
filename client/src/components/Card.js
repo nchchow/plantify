@@ -8,8 +8,8 @@ const Card = () => {
         src="https://s3.amazonaws.com/mygardenlife.com/plant-library/full/5426_26.jpg"
         alt="plant thumbnail"
       />
-      <div className="card__text overlay">
-        <h4 className="card__text--title">Title</h4>
+      <div className="card__content overlay">
+        <h4 className="card__content--title">Title</h4>
       </div>
     </article>
   );

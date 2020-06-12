@@ -82,7 +82,7 @@
     }
   }
 
-  &__text {
+  &__content {
     @include desktop() {
       position: absolute;
       bottom: 0;
