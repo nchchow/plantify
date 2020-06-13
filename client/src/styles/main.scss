@@ -7,6 +7,9 @@ $lg-desktop-breakpoint: 1440px;
 // fonts
 $font-main: "Roboto Condensed", sans-serif;
 
+// colors
+$heart-color: #fb3958;
+
 // MIXINS
 // font size
 @mixin setFontSizeLineHeight($font-size, $line-height) {
