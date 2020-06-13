@@ -1,9 +1,13 @@
 // BASE
-body,
-html {
+html,
+body {
   margin: 0;
   font-family: $font-main;
   letter-spacing: 0.05rem;
+}
+
+body {
+  padding-top: 62px;
 }
 
 ul {
