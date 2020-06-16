@@ -1,7 +1,8 @@
 exports.up = (knex) => {
   return knex.schema.createTable("users", (table) => {
-    table.increments("id").primary();
-    table.json("uploads").notNullable();
+    table.increments("user_id").primary();
+    table.string("name").notNullable();
+    table.json("upload_ids").notNullable();
     table.json("likes").notNullable();
   });
 };
