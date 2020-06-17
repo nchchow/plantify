@@ -7,7 +7,18 @@ const router = express.Router();
 router.route("/").get((req, res) => {
   Upload.where(req.query)
     .fetchAll({ withRelated: ["user"] })
-    .then((uploads) => res.status(200).json(uploads));
+    .then((uploads) => {
+      const serialized = JSON.parse(JSON.stringify(uploads));
+      const deserialized = serialized.map((upload) => {
+        const { upload_id, owner_id, liked_by } = upload;
+        return {
+          upload_id,
+          owner_id,
+          liked_by: JSON.parse(liked_by),
+        };
+      });
+      res.status(200).json(deserialized);
+    });
 });
 
 // // create an upload
