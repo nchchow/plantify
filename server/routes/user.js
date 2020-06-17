@@ -7,7 +7,17 @@ router.route("/").get((req, res) => {
   User.where(req.query)
     .fetchAll({ withRelated: ["uploads"] })
     .then((users) => {
-      res.status(200).json(users);
+      const serialized = JSON.parse(JSON.stringify(users));
+      const deserialized = serialized.map((user) => {
+        const { user_id, name, upload_ids, likes } = user;
+        return {
+          user_id,
+          name,
+          upload_ids: JSON.parse(upload_ids),
+          likes: JSON.parse(likes),
+        };
+      });
+      res.status(200).json(deserialized);
     });
 });
 
