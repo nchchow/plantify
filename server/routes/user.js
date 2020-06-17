@@ -33,12 +33,24 @@ router.route("/").get((req, res) => {
 //     .then((newUser) => res.status(200).json(newUser));
 // });
 
-// // get a user
-// router.route("/:id").get((req, res) => {
-//   User.where("user_id", req.params)
-//     .fetch({ withRelated: ["uploads"] })
-//     .then((user) => res.status(200).json(user));
-// });
+// get a user
+router.route("/:user_id").get((req, res) => {
+  User.where("user_id", req.params)
+    .fetch({ withRelated: ["uploads"] })
+    .then((user) => {
+      // convert query to destructured object
+      const { user_id, name, upload_ids, likes } = JSON.parse(
+        JSON.stringify(user)
+      );
+      // send user data with deserialize arrays
+      res.status(200).json({
+        user_id,
+        name,
+        upload_ids: JSON.parse(upload_ids),
+        likes: JSON.parse(likes),
+      });
+    });
+});
 
 // // update a user
 // router.route("/:id").put((req, res) => {
