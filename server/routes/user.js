@@ -2,6 +2,9 @@ const express = require("express");
 const User = require("../models/user");
 const router = express.Router();
 
+// controllers
+const getUserById = require("../controllers/user");
+
 // get all users
 router.route("/").get((req, res) => {
   User.where(req.query)
@@ -25,21 +28,7 @@ router.route("/").get((req, res) => {
 
 // get a user
 router.route("/:user_id").get((req, res) => {
-  User.where("user_id", req.params)
-    .fetch({ withRelated: ["uploads"] })
-    .then((user) => {
-      // convert query to destructured object
-      const { user_id, name, upload_ids, likes } = JSON.parse(
-        JSON.stringify(user)
-      );
-      // send user data with deserialize arrays
-      res.status(200).json({
-        user_id,
-        name,
-        upload_ids: JSON.parse(upload_ids),
-        likes: JSON.parse(likes),
-      });
-    });
+  getUserById(req.params).then((user) => res.status(200).json(user));
 });
 
 // // create new user
