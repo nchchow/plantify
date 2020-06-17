@@ -3,27 +3,11 @@ const User = require("../models/user");
 const router = express.Router();
 
 // controllers
-const getUserById = require("../controllers/user");
+const { getUsers, getUserById } = require("../controllers/user");
 
 // get all users
 router.route("/").get((req, res) => {
-  User.where(req.query)
-    .fetchAll({ withRelated: ["uploads"] })
-    .then((users) => {
-      // convert query to serialized array
-      const serialized = JSON.parse(JSON.stringify(users));
-      // create new array from deserialized objects
-      const deserialized = serialized.map((user) => {
-        const { user_id, name, upload_ids, likes } = user;
-        return {
-          user_id,
-          name,
-          upload_ids: JSON.parse(upload_ids),
-          likes: JSON.parse(likes),
-        };
-      });
-      res.status(200).json(deserialized);
-    });
+  getUsers(req.query).then((users) => res.status(200).json(users));
 });
 
 // get a user
