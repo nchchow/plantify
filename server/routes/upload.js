@@ -4,26 +4,11 @@ const Upload = require("../models/upload");
 const router = express.Router();
 
 // controllers
-const getUploadById = require("../controllers/upload");
+const { getUploads, getUploadById } = require("../controllers/upload");
 
 // get all uploads
 router.route("/").get((req, res) => {
-  Upload.where(req.query)
-    .fetchAll({ withRelated: ["user"] })
-    .then((uploads) => {
-      // convert query to serialized array
-      const serialized = JSON.parse(JSON.stringify(uploads));
-      // create new array from deserialized objects
-      const deserialized = serialized.map((upload) => {
-        const { upload_id, owner_id, liked_by } = upload;
-        return {
-          upload_id,
-          owner_id,
-          liked_by: JSON.parse(liked_by),
-        };
-      });
-      res.status(200).json(deserialized);
-    });
+  getUploads(req.query).then((uploads) => res.status(200).json(uploads));
 });
 
 // get an upload
