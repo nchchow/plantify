@@ -4,26 +4,32 @@ const Upload = require("../models/upload");
 const router = express.Router();
 
 // controllers
-const { getUploads, getUploadById } = require("../controllers/upload");
+const {
+  getUploads,
+  getUploadById,
+  likeUpload,
+} = require("../controllers/upload");
+const { getUserById } = require("../controllers/user");
 
 // get all uploads
 router.route("/").get((req, res) => {
-  getUploads(req.query).then((uploads) => res.status(200).json(uploads));
+  getUploads(req.query)
+    .then((uploads) => res.status(200).json(uploads))
+    .catch((err) => res.status(404).json({ error: "not found" }));
 });
 
 // get an upload
 router.route("/:upload_id").get((req, res) => {
-  getUploadById(req.params).then((upload) => res.status(200).json(upload));
+  getUploadById(req.params)
+    .then((upload) => res.status(200).json(upload))
+    .catch((err) => res.status(404).json({ error: "not found" }));
 });
 
 // like an upload
 router.route("/:upload_id").put((req, res) => {
-  // body has user id
-  // get upload from upload id
-  // find its owner
-  // compare owner likes with user uploads
-  // if there's a match, send notification
-  // else exchange ids
+  likeUpload(req.params, "1")
+    .then(() => res.status(200))
+    .catch((err) => res.status(404).json({ error: "not found" }));
 });
 
 // // create an upload
