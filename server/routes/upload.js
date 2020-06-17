@@ -3,6 +3,9 @@ const User = require("../models/user");
 const Upload = require("../models/upload");
 const router = express.Router();
 
+// controllers
+const getUploadById = require("../controllers/upload");
+
 // get all uploads
 router.route("/").get((req, res) => {
   Upload.where(req.query)
@@ -25,20 +28,17 @@ router.route("/").get((req, res) => {
 
 // get an upload
 router.route("/:upload_id").get((req, res) => {
-  Upload.where("upload_id", req.params)
-    .fetch({ withRelated: "user" })
-    .then((upload) => {
-      // convert query to destructured object
-      const { upload_id, owner_id, liked_by } = JSON.parse(
-        JSON.stringify(upload)
-      );
-      // send upload data with deserialize arrays
-      res.status(200).json({
-        upload_id,
-        owner_id,
-        liked_by: JSON.parse(liked_by),
-      });
-    });
+  getUploadById(req.params).then((upload) => res.status(200).json(upload));
+});
+
+// like an upload
+router.route("/:upload_id").put((req, res) => {
+  // body has user id
+  // get upload from upload id
+  // find its owner
+  // compare owner likes with user uploads
+  // if there's a match, send notification
+  // else exchange ids
 });
 
 // // create an upload
