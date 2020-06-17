@@ -12,7 +12,7 @@ router.route("/").get((req, res) => {
 
 // get a user
 router.route("/:user_id").get((req, res) => {
-  getUserById(req.params).then((user) => res.status(200).json(user));
+  getUserById(req.params.user_id).then((user) => res.status(200).json(user));
 });
 
 // // create new user
