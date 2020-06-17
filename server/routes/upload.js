@@ -20,37 +20,20 @@ router.route("/").get((req, res) => {
 
 // get an upload
 router.route("/:upload_id").get((req, res) => {
-  getUploadById(req.params)
+  getUploadById(req.params.upload_id)
     .then((upload) => res.status(200).json(upload))
     .catch((err) => res.status(404).json({ error: "not found" }));
 });
 
 // like an upload
-router.route("/:upload_id").put((req, res) => {
-  likeUpload(req.params, "1")
+router.route("/:upload_id/like").put((req, res) => {
+  likeUpload(req.params.upload_id, "1")
     .then(() => res.status(200))
     .catch((err) => res.status(404).json({ error: "not found" }));
 });
 
-// // create an upload
-// router.route("/").post((req, res) => {
-//   User.where("user_id", req.body.userId)
-//     .fetch()
-//     .then()
-//     .catch((user) =>
-//       res.status(400).json({ error: "Please provide valid user id" })
-//     );
-//   new Upload({
-//     upload_id: Date.now(), // TODO: uuid()
-//     liked_by: JSON.stringify([""]),
-//     owner_id: req.body.ownerId,
-//   })
-//     .save()
-//     .then((newUpload) => res.statuus(201).json({ newUpload }));
-// });
-
 // // update an upload
-// router.route("/:id").put((req, res) => {
+// router.route("/:upload_id").put((req, res) => {
 //   if (req.body.userId) {
 //     User.where("user_id", req.body.userId)
 //       .fetch()
@@ -72,6 +55,23 @@ router.route("/:upload_id").put((req, res) => {
 //         })
 //         .then((updatedUpload) => res.status(200).json({ updatedUpload }))
 //     );
+// });
+
+// // create an upload
+// router.route("/").post((req, res) => {
+//   User.where("user_id", req.body.userId)
+//     .fetch()
+//     .then()
+//     .catch((user) =>
+//       res.status(400).json({ error: "Please provide valid user id" })
+//     );
+//   new Upload({
+//     upload_id: Date.now(), // TODO: uuid()
+//     liked_by: JSON.stringify([""]),
+//     owner_id: req.body.ownerId,
+//   })
+//     .save()
+//     .then((newUpload) => res.statuus(201).json({ newUpload }));
 // });
 
 // // delete an upload
