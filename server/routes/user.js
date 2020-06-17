@@ -21,18 +21,6 @@ router.route("/").get((req, res) => {
     });
 });
 
-// // create new user
-// router.route("/").post((req, res) => {
-//   new User({
-//     user_id: Date.now(), // TODO: change to uuid()
-//     name: req.body.name,
-//     upload_ids: JSON.stringify([""]),
-//     likes: JSON.stringify([""]),
-//   })
-//     .save()
-//     .then((newUser) => res.status(200).json(newUser));
-// });
-
 // get a user
 router.route("/:user_id").get((req, res) => {
   User.where("user_id", req.params)
@@ -51,6 +39,18 @@ router.route("/:user_id").get((req, res) => {
       });
     });
 });
+
+// // create new user
+// router.route("/").post((req, res) => {
+//   new User({
+//     user_id: Date.now(), // TODO: change to uuid()
+//     name: req.body.name,
+//     upload_ids: JSON.stringify([""]),
+//     likes: JSON.stringify([""]),
+//   })
+//     .save()
+//     .then((newUser) => res.status(200).json(newUser));
+// });
 
 // // update a user
 // router.route("/:id").put((req, res) => {

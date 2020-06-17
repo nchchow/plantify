@@ -8,7 +8,9 @@ router.route("/").get((req, res) => {
   Upload.where(req.query)
     .fetchAll({ withRelated: ["user"] })
     .then((uploads) => {
+      // convert query to serialized array
       const serialized = JSON.parse(JSON.stringify(uploads));
+      // create new array from deserialized objects
       const deserialized = serialized.map((upload) => {
         const { upload_id, owner_id, liked_by } = upload;
         return {
@@ -18,6 +20,24 @@ router.route("/").get((req, res) => {
         };
       });
       res.status(200).json(deserialized);
+    });
+});
+
+// get an upload
+router.route("/:upload_id").get((req, res) => {
+  Upload.where("upload_id", req.params)
+    .fetch({ withRelated: "user" })
+    .then((upload) => {
+      // convert query to destructured object
+      const { upload_id, owner_id, liked_by } = JSON.parse(
+        JSON.stringify(upload)
+      );
+      // send user data with deserialize arrays
+      res.status(200).json({
+        upload_id,
+        owner_id,
+        liked_by: JSON.parse(liked_by),
+      });
     });
 });
 
@@ -36,13 +56,6 @@ router.route("/").get((req, res) => {
 //   })
 //     .save()
 //     .then((newUpload) => res.statuus(201).json({ newUpload }));
-// });
-
-// // get an upload
-// router.route("/:id").get((req, res) => {
-//   Upload.where("upload_id", req.params)
-//     .fetch({ withRelated: "user" })
-//     .then((upload) => res.status(200).json({ upload }));
 // });
 
 // // update an upload
