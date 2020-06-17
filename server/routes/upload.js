@@ -32,7 +32,7 @@ router.route("/:upload_id").get((req, res) => {
       const { upload_id, owner_id, liked_by } = JSON.parse(
         JSON.stringify(upload)
       );
-      // send user data with deserialize arrays
+      // send upload data with deserialize arrays
       res.status(200).json({
         upload_id,
         owner_id,

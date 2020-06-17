@@ -7,9 +7,9 @@ router.route("/").get((req, res) => {
   User.where(req.query)
     .fetchAll({ withRelated: ["uploads"] })
     .then((users) => {
-      // convert query to destructured object
+      // convert query to serialized array
       const serialized = JSON.parse(JSON.stringify(users));
-      // send user data with deserialize arrays
+      // create new array from deserialized objects
       const deserialized = serialized.map((user) => {
         const { user_id, name, upload_ids, likes } = user;
         return {
