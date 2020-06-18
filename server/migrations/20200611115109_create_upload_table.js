@@ -10,6 +10,9 @@ exports.up = (knex) => {
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
     table.json("liked_by");
+    table.string("title");
+    table.string("description");
+    table.string("image_path");
   });
 };
 
