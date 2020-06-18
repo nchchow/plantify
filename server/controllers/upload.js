@@ -2,14 +2,12 @@ const Upload = require("../models/upload");
 const { getUserById } = require("./user");
 
 const getUploads = async (query) => {
-  const queryResults = await Upload.where(query).fetchAll({
+  const { models } = await Upload.where(query).fetchAll({
     withRelated: ["user"],
   });
-  // convert query to serialized array
-  const serialized = JSON.parse(JSON.stringify(queryResults));
-  // create new array from deserialized objects
-  return serialized.map((upload) => {
-    const { upload_id, owner_id, liked_by } = upload;
+  // return new array from deserialized objects
+  return models.map(({ attributes }) => {
+    const { upload_id, owner_id, liked_by } = attributes;
     return {
       upload_id,
       owner_id,
@@ -19,13 +17,11 @@ const getUploads = async (query) => {
 };
 
 const getUploadById = async (uploadId) => {
-  const queryResult = await Upload.where("upload_id", uploadId).fetch({
+  const { attributes } = await Upload.where("upload_id", uploadId).fetch({
     withRelated: "user",
   });
   // convert query to destructured object
-  const { upload_id, owner_id, liked_by } = JSON.parse(
-    JSON.stringify(queryResult)
-  );
+  const { upload_id, owner_id, liked_by } = attributes;
   // send upload data with deserialize arrays
   return {
     upload_id,
@@ -36,6 +32,7 @@ const getUploadById = async (uploadId) => {
 
 const updateUploadById = async (uploadId, likedById) => {
   const queryResult = await Upload.where("upload_id", uploadId).fetch();
+  // deserialize array
   const likedByParsed = JSON.parse(queryResult.attributes.liked_by);
   const likedBy =
     likedByParsed.length > 0 ? [...likedByParsed, likedById] : likedByParsed;
