@@ -58,12 +58,8 @@ const likeUpload = async (likedId, likedById) => {
     console.log("Matched!");
   } else {
     // else exchange ids
-    try {
-      await updateUploadById(likedId, likedById);
-      await updateUserById(likedById, { likedId });
-    } catch (err) {
-      throw err;
-    }
+    await updateUploadById(likedId, likedById);
+    await updateUserById(likedById, { likedId });
   }
 };
 
