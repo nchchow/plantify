@@ -1,5 +1,5 @@
 const Upload = require("../models/upload");
-const { getUserById } = require("./user");
+const { getUserById, updateUserById } = require("./user");
 
 const getUploads = async (query) => {
   const { models } = await Upload.where(query).fetchAll({
@@ -34,19 +34,20 @@ const updateUploadById = async (uploadId, likedById) => {
   const queryResult = await Upload.where("upload_id", uploadId).fetch();
   // deserialize array
   const likedByParsed = JSON.parse(queryResult.attributes.liked_by);
-  const likedBy =
-    likedByParsed.length > 0 ? [...likedByParsed, likedById] : likedByParsed;
+  const likedBy = likedByParsed.includes(likedById)
+    ? likedByParsed
+    : [...likedByParsed, likedById];
   return queryResult.save({
     ...queryResult.attributes,
     liked_by: JSON.stringify(likedBy),
   });
 };
 
-const likeUpload = async (uploadId, likedById) => {
+const likeUpload = async (likedId, likedById) => {
   // get user that liked
   const likedUser = await getUserById(likedById);
   // get upload from upload id
-  const upload = await getUploadById(uploadId);
+  const upload = await getUploadById(likedId);
   // get its owner
   const owner = await getUserById(upload.owner_id);
   // compare owner likes with liked user uploads
@@ -56,9 +57,13 @@ const likeUpload = async (uploadId, likedById) => {
     // TODO: send notification
   } else {
     // else exchange ids
-    updateUploadById(uploadId, likedById);
-    // TODO: save to db
-    likedUser.likes.push(uploadId);
+    try {
+      await updateUploadById(likedId, likedById);
+      await updateUserById(likedById, { likedId });
+      return;
+    } catch (err) {
+      throw err;
+    }
   }
 };
 

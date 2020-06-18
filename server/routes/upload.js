@@ -30,7 +30,9 @@ router.route("/:upload_id").get((req, res) => {
 router.route("/:upload_id/like").put((req, res) => {
   // TODO: make second arg dynamic
   likeUpload(req.params.upload_id, "1")
-    .then(() => res.status(200))
+    .then(() => {
+      res.sendStatus(200);
+    })
     .catch((err) => res.status(404).json({ error: "not found" }));
 });
 
