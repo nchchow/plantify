@@ -7,10 +7,9 @@ const getUploads = async (query) => {
   });
   // return new array from deserialized objects
   return models.map(({ attributes }) => {
-    const { upload_id, owner_id, liked_by } = attributes;
+    const { liked_by } = attributes;
     return {
-      upload_id,
-      owner_id,
+      ...attributes,
       liked_by: JSON.parse(liked_by),
     };
   });
@@ -21,11 +20,10 @@ const getUploadById = async (uploadId) => {
     withRelated: "user",
   });
   // convert query to destructured object
-  const { upload_id, owner_id, liked_by } = attributes;
+  const { liked_by } = attributes;
   // send upload data with deserialize arrays
   return {
-    upload_id,
-    owner_id,
+    ...attributes,
     liked_by: JSON.parse(liked_by),
   };
 };
