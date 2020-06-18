@@ -7,6 +7,7 @@ const router = express.Router();
 const {
   getUploads,
   getUploadById,
+  updateUploadById,
   likeUpload,
 } = require("../controllers/upload");
 const { getUserById } = require("../controllers/user");
@@ -34,20 +35,9 @@ router.route("/:upload_id/like").put((req, res) => {
 
 // update an upload
 router.route("/:upload_id").put((req, res) => {
-  Upload.where({ upload_id: req.params.upload_id })
-    .fetch()
-    .then((queryResult) => {
-      const likedByParsed = JSON.parse(queryResult.attributes.liked_by);
-      const likedBy =
-        likedByParsed.length > 0
-          ? [...likedByParsed, req.body.likedById]
-          : likedByParsed;
-      queryResult
-        .save({ ...queryResult.attributes, liked_by: JSON.stringify(likedBy) })
-        .then((updatedUpload) => res.status(200).json(updatedUpload))
-        .catch((err) => res.status(500).json({ error: "cannot save", err }));
-    })
-    .catch((err) => res.status(404).json({ error: "not found" }));
+  updateUploadById(req.params.upload_id, req.body.likedById)
+    .then((updatedUpload) => res.status(200).json(updatedUpload))
+    .catch((err) => res.status(500).json({ error: "cannot save" }));
 });
 
 // // create an upload
