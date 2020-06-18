@@ -7,12 +7,16 @@ const { getUsers, getUserById } = require("../controllers/user");
 
 // get all users
 router.route("/").get((req, res) => {
-  getUsers(req.query).then((users) => res.status(200).json(users));
+  getUsers(req.query)
+    .then((users) => res.status(200).json(users))
+    .catch((err) => res.status(404).json({ error: "not found" }));
 });
 
 // get a user
 router.route("/:user_id").get((req, res) => {
-  getUserById(req.params.user_id).then((user) => res.status(200).json(user));
+  getUserById(req.params.user_id)
+    .then((user) => res.status(200).json(user))
+    .catch((err) => res.status(404).json({ error: "not found" }));
 });
 
 // // create new user
@@ -27,25 +31,25 @@ router.route("/:user_id").get((req, res) => {
 //     .then((newUser) => res.status(200).json(newUser));
 // });
 
-// // update a user
-// router.route("/:id").put((req, res) => {
-//   User.where("user_id", req.params)
-//     .fetch()
-//     .then((user) =>
-//       user
-//         .save({
-//           user_id: Date.now(), // TODO: change to uuid
-//           name: req.body.name ? req.body.name : user.name,
-//           upload_ids: JSON.stringify(req.body.uploadId) // if updated
-//             ? JSON.stringify(user.upload_ids.push(req.body.uploadId)) // push to array
-//             : user.upload_ids,
-//           likes: JSON.stringify(req.body.likedId) // if updated
-//             ? JSON.stringify(user.likes.push(req.body.likedId)) // push to array
-//             : user.likes,
-//         })
-//         .then((updatedUser) => res.status(200).json(updatedUser))
-//     );
-// });
+// update a user
+router.route("/:user_id").put((req, res) => {
+  User.where("user_id", req.params.user_id)
+    .fetch()
+    .then((user) =>
+      user
+        .save({
+          user_id: Date.now(), // TODO: change to uuid
+          name: req.body.name ? req.body.name : user.name,
+          upload_ids: JSON.stringify(req.body.uploadId) // if updated
+            ? JSON.stringify(user.upload_ids.push(req.body.uploadId)) // push to array
+            : user.upload_ids,
+          likes: JSON.stringify(req.body.likedId) // if updated
+            ? JSON.stringify(user.likes.push(req.body.likedId)) // push to array
+            : user.likes,
+        })
+        .then((updatedUser) => res.status(200).json(updatedUser))
+    );
+});
 
 // // delete a user
 // router.route("/:id").delete((req, res) => {
