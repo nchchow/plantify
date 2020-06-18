@@ -35,20 +35,25 @@ router.route("/:user_id").get((req, res) => {
 router.route("/:user_id").put((req, res) => {
   User.where("user_id", req.params.user_id)
     .fetch()
-    .then((user) =>
-      user
+    .then((queryResult) => {
+      const { name, upload_ids, likes } = queryResult.attributes;
+      const uploadIdsParsed = JSON.parse(upload_ids);
+      const likesParsed = JSON.parse(likes);
+      queryResult
         .save({
-          user_id: Date.now(), // TODO: change to uuid
-          name: req.body.name ? req.body.name : user.name,
-          upload_ids: JSON.stringify(req.body.uploadId) // if updated
-            ? JSON.stringify(user.upload_ids.push(req.body.uploadId)) // push to array
-            : user.upload_ids,
-          likes: JSON.stringify(req.body.likedId) // if updated
-            ? JSON.stringify(user.likes.push(req.body.likedId)) // push to array
-            : user.likes,
+          name: req.body.name ? req.body.name : name,
+          upload_ids:
+            req.body.uploadId && !uploadIdsParsed.includes(req.body.uploadId) // if updated
+              ? JSON.stringify([...uploadIdsParsed, req.body.uploadId]) // push to array
+              : upload_ids,
+          likes:
+            req.body.likedId && !likesParsed.includes(req.body.likedId) // if updated
+              ? JSON.stringify([...likesParsed, req.body.likedId]) // push to array
+              : likes,
         })
         .then((updatedUser) => res.status(200).json(updatedUser))
-    );
+        .catch((err) => res.status(500).json({ error: "cannot save" }));
+    });
 });
 
 // // delete a user
