@@ -55,12 +55,12 @@ const likeUpload = async (likedId, likedById) => {
   if (isMatch) {
     // if there's a match, send notification
     // TODO: send notification
+    console.log("Matched!");
   } else {
     // else exchange ids
     try {
       await updateUploadById(likedId, likedById);
       await updateUserById(likedById, { likedId });
-      return;
     } catch (err) {
       throw err;
     }
