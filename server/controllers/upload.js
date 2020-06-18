@@ -54,7 +54,6 @@ const likeUpload = async (uploadId, likedById) => {
   const owner = await getUserById(upload.owner_id);
   // compare owner likes with liked user uploads
   const isMatch = owner.likes.some((id) => likedUser.upload_ids.includes(id));
-  console.log(isMatch);
   if (isMatch) {
     // if there's a match, send notification
     // TODO: send notification
