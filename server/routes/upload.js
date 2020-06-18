@@ -32,30 +32,23 @@ router.route("/:upload_id/like").put((req, res) => {
     .catch((err) => res.status(404).json({ error: "not found" }));
 });
 
-// // update an upload
-// router.route("/:upload_id").put((req, res) => {
-//   if (req.body.userId) {
-//     User.where("user_id", req.body.userId)
-//       .fetch()
-//       .then()
-//       .catch((user) =>
-//         res.status(404).json({ error: "Please provide valid user id" })
-//       );
-//   }
-//   Upload.where("upload_id", req.params)
-//     .fetch()
-//     .then((upload) =>
-//       upload
-//         .save({
-//           upload_id: upload.upload_id,
-//           liked_by: JSON.stringify(req.body.likedById) // if updated
-//             ? JSON.stringify(upload.liked_by.push(req.body.likedById)) // push to array
-//             : upload.liked_by,
-//           owner_id: upload.owner_id,
-//         })
-//         .then((updatedUpload) => res.status(200).json({ updatedUpload }))
-//     );
-// });
+// update an upload
+router.route("/:upload_id").put((req, res) => {
+  Upload.where({ upload_id: req.params.upload_id })
+    .fetch()
+    .then((queryResult) => {
+      const likedByParsed = JSON.parse(queryResult.attributes.liked_by);
+      const likedBy =
+        likedByParsed.length > 0
+          ? [...likedByParsed, req.body.likedById]
+          : likedByParsed;
+      queryResult
+        .save({ ...queryResult.attributes, liked_by: JSON.stringify(likedBy) })
+        .then((updatedUpload) => res.status(200).json(updatedUpload))
+        .catch((err) => res.status(500).json({ error: "cannot save", err }));
+    })
+    .catch((err) => res.status(404).json({ error: "not found" }));
+});
 
 // // create an upload
 // router.route("/").post((req, res) => {
