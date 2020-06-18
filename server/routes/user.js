@@ -3,7 +3,11 @@ const User = require("../models/user");
 const router = express.Router();
 
 // controllers
-const { getUsers, getUserById } = require("../controllers/user");
+const {
+  getUsers,
+  getUserById,
+  updateUserById,
+} = require("../controllers/user");
 
 // get all users
 router.route("/").get((req, res) => {
@@ -33,27 +37,9 @@ router.route("/:user_id").get((req, res) => {
 
 // update a user
 router.route("/:user_id").put((req, res) => {
-  User.where("user_id", req.params.user_id)
-    .fetch()
-    .then((queryResult) => {
-      const { name, upload_ids, likes } = queryResult.attributes;
-      const uploadIdsParsed = JSON.parse(upload_ids);
-      const likesParsed = JSON.parse(likes);
-      queryResult
-        .save({
-          name: req.body.name ? req.body.name : name,
-          upload_ids:
-            req.body.uploadId && !uploadIdsParsed.includes(req.body.uploadId) // if updated
-              ? JSON.stringify([...uploadIdsParsed, req.body.uploadId]) // push to array
-              : upload_ids,
-          likes:
-            req.body.likedId && !likesParsed.includes(req.body.likedId) // if updated
-              ? JSON.stringify([...likesParsed, req.body.likedId]) // push to array
-              : likes,
-        })
-        .then((updatedUser) => res.status(200).json(updatedUser))
-        .catch((err) => res.status(500).json({ error: "cannot save" }));
-    });
+  updateUserById(req.params.user_id, req.body)
+    .then((updatedUser) => res.status(200).json(updatedUser))
+    .catch((err) => res.status(500).json({ error: "cannot save" }));
 });
 
 // // delete a user

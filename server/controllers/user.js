@@ -35,4 +35,23 @@ const getUserById = async (userId) => {
   };
 };
 
-module.exports = { getUsers, getUserById };
+const updateUserById = async (userId, body) => {
+  const queryResult = await User.where("user_id", userId).fetch();
+  const { name, upload_ids, likes } = queryResult.attributes;
+  const uploadIdsParsed = JSON.parse(upload_ids);
+  const likesParsed = JSON.parse(likes);
+  const updatedUser = await queryResult.save({
+    name: body.name ? body.name : name,
+    upload_ids:
+      body.uploadId && !uploadIdsParsed.includes(body.uploadId) // if updated
+        ? JSON.stringify([...uploadIdsParsed, body.uploadId]) // push to array
+        : upload_ids,
+    likes:
+      body.likedId && !likesParsed.includes(body.likedId) // if updated
+        ? JSON.stringify([...likesParsed, body.likedId]) // push to array
+        : likes,
+  });
+  return updatedUser;
+};
+
+module.exports = { getUsers, getUserById, updateUserById };
