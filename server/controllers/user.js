@@ -6,10 +6,9 @@ const getUsers = async (query) => {
   });
   // return new array from deserialized objects
   return models.map(({ attributes }) => {
-    const { user_id, name, upload_ids, likes } = attributes;
+    const { upload_ids, likes } = attributes;
     return {
-      user_id,
-      name,
+      ...attributes,
       upload_ids: JSON.parse(upload_ids),
       likes: JSON.parse(likes),
     };
@@ -21,11 +20,10 @@ const getUserById = async (userId) => {
     withRelated: ["uploads"],
   });
   // convert query to destructured object
-  const { user_id, name, upload_ids, likes } = attributes;
+  const { upload_ids, likes } = attributes;
   // return user data with deserialize arrays
   return {
-    user_id,
-    name,
+    ...attributes,
     upload_ids: JSON.parse(upload_ids),
     likes: JSON.parse(likes),
   };
