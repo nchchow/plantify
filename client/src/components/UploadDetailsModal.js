@@ -31,9 +31,14 @@ const UploadDetailsModal = ({ uploadId, userId }) => {
   return (
     <article className="upload-details container--modal">
       <h1>modal</h1>
-      <h4>{upload && upload.title}</h4>
-      <p>{upload && upload.description}</p>
-      <p>{user && user.name}</p>
+      {upload && user && (
+        <>
+          <img src={upload.image_url} alt={upload.title} />
+          <h4>{upload.title}</h4>
+          <p>{upload.description}</p>
+          <p>{user.name}</p>
+        </>
+      )}
     </article>
   );
 };
