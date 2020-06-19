@@ -1,5 +1,6 @@
 const Upload = require("../models/upload");
 const { getUserById, updateUserById } = require("./user");
+const { URL, PORT } = process.env;
 
 const getUploads = async (query) => {
   const { models } = await Upload.where(query).fetchAll({
@@ -7,9 +8,10 @@ const getUploads = async (query) => {
   });
   // return new array from deserialized objects
   return models.map(({ attributes }) => {
-    const { liked_by } = attributes;
+    const { image_url, liked_by } = attributes;
     return {
       ...attributes,
+      image_url: `${URL}${PORT}/api/images/${image_url}`,
       liked_by: JSON.parse(liked_by),
     };
   });
