@@ -12,7 +12,7 @@ exports.up = (knex) => {
     table.json("liked_by");
     table.string("title");
     table.string("description");
-    table.string("image_path");
+    table.string("image_url");
   });
 };
 
