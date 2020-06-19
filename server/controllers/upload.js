@@ -11,7 +11,7 @@ const getUploads = async (query) => {
     const { image_url, liked_by } = attributes;
     return {
       ...attributes,
-      image_url: `${URL}${PORT}/api/images/${image_url}`,
+      image_url: `http://${URL}${PORT}/api/images/${image_url}`,
       liked_by: JSON.parse(liked_by),
     };
   });
