@@ -5,7 +5,7 @@ module.exports = [
     liked_by: JSON.stringify([]),
     title: "",
     description: "",
-    image_path: "",
+    image_url: "photo-1562351757-66f3589f30cf.jpg",
   },
   {
     upload_id: "2",
@@ -13,7 +13,7 @@ module.exports = [
     liked_by: JSON.stringify([]),
     title: "",
     description: "",
-    image_path: "",
+    image_url: "photo-1546387903-6d82d96ccca6.jpg",
   },
   {
     upload_id: "3",
@@ -21,7 +21,7 @@ module.exports = [
     liked_by: JSON.stringify([]),
     title: "",
     description: "",
-    image_path: "",
+    image_url: "photo-1506637066753-de610c8b0cab.jpg",
   },
   {
     upload_id: "4",
@@ -29,7 +29,7 @@ module.exports = [
     liked_by: JSON.stringify([]),
     title: "",
     description: "",
-    image_path: "",
+    image_url: "photo-1569745358610-b01866003860.jpg",
   },
   {
     upload_id: "5",
@@ -37,7 +37,7 @@ module.exports = [
     liked_by: JSON.stringify([]),
     title: "",
     description: "",
-    image_path: "",
+    image_url: "photo-1531323423421-1c190b0fa2ce.jpg",
   },
   {
     upload_id: "6",
@@ -45,7 +45,7 @@ module.exports = [
     liked_by: JSON.stringify([]),
     title: "",
     description: "",
-    image_path: "",
+    image_url: "photo-1546381061-3e57f7cc61fd.jpg",
   },
   {
     upload_id: "7",
@@ -53,7 +53,7 @@ module.exports = [
     liked_by: JSON.stringify([]),
     title: "",
     description: "",
-    image_path: "",
+    image_url: "photo-1453904300235-0f2f60b15b5d.jpg",
   },
   {
     upload_id: "8",
@@ -61,7 +61,7 @@ module.exports = [
     liked_by: JSON.stringify([]),
     title: "",
     description: "",
-    image_path: "",
+    image_url: "photo-1586323538904-4dff5de33989.jpg",
   },
   {
     upload_id: "9",
@@ -69,6 +69,6 @@ module.exports = [
     liked_by: JSON.stringify([]),
     title: "",
     description: "",
-    image_path: "",
+    image_url: "photo-1590417975638-1f8d37cf22df.jpg",
   },
 ];
