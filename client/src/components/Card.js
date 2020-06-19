@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Card = ({ upload }) => {
   const [isHeartHovered, setIsHeartHovered] = useState(null);
@@ -8,6 +9,14 @@ const Card = ({ upload }) => {
     // TODO: use logged in user id
     if (upload.liked_by.includes("1")) setIsLiked(true);
   }, [upload]);
+
+  const handleLike = () => {
+    // TODO: use logged in user id
+    axios
+      .put(`/api/uploads/${upload.upload_id}/like`, { userId: "1" })
+      .then(() => setIsLiked(true))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <article className="card">
@@ -22,7 +31,7 @@ const Card = ({ upload }) => {
           className={`fas fa-heart ${
             isLiked || isHeartHovered ? "colored" : ""
           }`}
-          onClick={() => console.log("clicked")}
+          onClick={handleLike}
           onMouseOver={() => setIsHeartHovered(true)}
           onMouseLeave={() => setIsHeartHovered(false)}
         ></i>
