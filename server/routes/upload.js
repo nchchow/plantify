@@ -29,7 +29,7 @@ router.route("/:upload_id").get((req, res) => {
 // like an upload
 router.route("/:upload_id/like").put((req, res) => {
   // TODO: make second arg dynamic
-  likeUpload(req.params.upload_id, "1")
+  likeUpload(req.params.upload_id, req.body.userId)
     .then(() => {
       res.sendStatus(200);
     })
