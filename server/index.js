@@ -12,5 +12,6 @@ const { PORT } = process.env;
 
 app.use("/api/users", userRoute);
 app.use("/api/uploads", uploadRoute);
+app.use("/api/images", express.static(__dirname + "/uploaded_photos"));
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
