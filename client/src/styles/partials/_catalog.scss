@@ -1,9 +1,12 @@
 // CATALOG
 .catalog {
+  margin-top: 24px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
 
   @include tablet() {
+    margin-top: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 36px;
