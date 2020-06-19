@@ -10,7 +10,8 @@ const Card = ({ upload }) => {
     if (upload.liked_by.includes("1")) setIsLiked(true);
   }, [upload]);
 
-  const handleLike = () => {
+  const handleLike = (event) => {
+    event.stopPropagation();
     // TODO: use logged in user id
     axios
       .put(`/api/uploads/${upload.upload_id}/like`, { userId: "1" })
@@ -20,11 +21,7 @@ const Card = ({ upload }) => {
 
   return (
     <article className="card">
-      <img
-        className="card__img"
-        src={upload.image_url}
-        alt={`photo of a ${upload.title}`}
-      />
+      <img className="card__img" src={upload.image_url} alt={upload.title} />
       <div className="card__content overlay">
         <h4 className="card__content--title">{upload.title}</h4>
         <i
