@@ -22,10 +22,11 @@ const getUploadById = async (uploadId) => {
     withRelated: "user",
   });
   // convert query to destructured object
-  const { liked_by } = attributes;
+  const { image_url, liked_by } = attributes;
   // send upload data with deserialize arrays
   return {
     ...attributes,
+    image_url: `http://${URL}${PORT}/api/images/${image_url}`,
     liked_by: JSON.parse(liked_by),
   };
 };
