@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Card = ({ upload }) => {
@@ -22,8 +23,10 @@ const Card = ({ upload }) => {
   return (
     <article className="card">
       <img className="card__img" src={upload.image_url} alt={upload.title} />
-      <div className="card__content overlay">
-        <h4 className="card__content--title">{upload.title}</h4>
+      <div className="card__content card__overlay">
+        <Link to={`/uploads/${upload.upload_id}`}>
+          <h4 className="card__content--title">{upload.title}</h4>
+        </Link>
         <i
           className={`fas fa-heart ${
             isLiked || isHeartHovered ? "colored" : ""
