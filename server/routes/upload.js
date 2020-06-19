@@ -28,11 +28,8 @@ router.route("/:upload_id").get((req, res) => {
 
 // like an upload
 router.route("/:upload_id/like").put((req, res) => {
-  // TODO: make second arg dynamic
   likeUpload(req.params.upload_id, req.body.userId)
-    .then(() => {
-      res.sendStatus(200);
-    })
+    .then(() => res.sendStatus(200))
     .catch((err) => res.status(404).json({ error: "not found" }));
 });
 
