@@ -34,7 +34,7 @@ const Catalog = () => {
           </li>
         ))
       )}
-      <Route path="/details/:upload_id" component={DetailsModal} />
+      <Route path="/feed/details/:upload_id" component={DetailsModal} />
     </ul>
   );
 };

@@ -24,7 +24,7 @@ const Card = ({ upload }) => {
     <article className="card">
       <img className="card__img" src={upload.image_url} alt={upload.title} />
       <div className="card__content card__overlay">
-        <Link to={`/details/${upload.upload_id}`}>
+        <Link to={`/feed/details/${upload.upload_id}`}>
           <h4 className="card__content--title">{upload.title}</h4>
         </Link>
         <i
