@@ -30,7 +30,7 @@ const DetailsModal = (matchProps) => {
 
   return (
     <div className="overlay">
-      <article className="details-modal container--modal">
+      <article className="details-modal container--modal flex-center">
         {upload && user && (
           <>
             <img

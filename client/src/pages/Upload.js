@@ -1,7 +1,13 @@
 import React from "react";
 
 const Upload = () => {
-  return <h1>UPLOAD</h1>;
+  return (
+    <form>
+      <h1>UPLOAD</h1>
+      <input type="file" />
+      <input type="text" placeholder="" />
+    </form>
+  );
 };
 
 export default Upload;
