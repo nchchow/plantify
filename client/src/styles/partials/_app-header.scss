@@ -18,6 +18,12 @@
     }
   }
 
+  &__logo-link {
+    display: flex;
+    align-items: center;
+    height: 40px;
+  }
+
   &__nav {
     margin-left: auto;
     margin-right: 1rem;
@@ -32,7 +38,7 @@
       display: flex;
     }
 
-    &--link {
+    &--upload-button {
       display: inline-block;
       text-align: center;
       width: 100px;

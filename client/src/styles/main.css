@@ -80,10 +80,13 @@ a {
   height: 100%;
 }
 
-.flex {
+.flex-center {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .overlay {
@@ -126,6 +129,16 @@ a {
   }
 }
 
+.app-header__logo-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40px;
+}
+
 .app-header__nav {
   margin-left: auto;
   margin-right: 1rem;
@@ -149,7 +162,7 @@ a {
   display: flex;
 }
 
-.app-header__nav--link {
+.app-header__nav--upload-button {
   display: inline-block;
   text-align: center;
   width: 100px;
@@ -160,7 +173,7 @@ a {
   border-radius: 20px;
 }
 
-.app-header__nav--link:hover {
+.app-header__nav--upload-button:hover {
   background: rgba(0, 0, 0, 0.7);
 }
 
