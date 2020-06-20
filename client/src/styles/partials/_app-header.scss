@@ -31,5 +31,20 @@
     &--list {
       display: flex;
     }
+
+    &--link {
+      display: inline-block;
+      text-align: center;
+      width: 100px;
+      height: 40px;
+      line-height: 40px;
+      background: #000;
+      color: #fff;
+      border-radius: 20px;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.7);
+      }
+    }
   }
 }
