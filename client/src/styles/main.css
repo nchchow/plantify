@@ -434,7 +434,7 @@ a {
   color: #fb3958;
 }
 
-.upload-details {
+.details-modal {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -451,7 +451,7 @@ a {
 }
 
 @media screen and (min-width: 1080px) {
-  .upload-details {
+  .details-modal {
     margin: 75px auto;
     width: 768px;
     height: 600px;
@@ -459,7 +459,7 @@ a {
   }
 }
 
-.upload-details__img {
+.details-modal__img {
   width: 100%;
   height: 400px;
   -o-object-fit: cover;
@@ -467,12 +467,12 @@ a {
 }
 
 @media screen and (min-width: 1080px) {
-  .upload-details__img {
+  .details-modal__img {
     border-radius: 8px 8px 0 0;
   }
 }
 
-.upload-details--text-wrap {
+.details-modal--text-wrap {
   margin-left: 16px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -485,43 +485,43 @@ a {
 }
 
 @media screen and (min-width: 1080px) {
-  .upload-details--text-wrap {
+  .details-modal--text-wrap {
     margin-left: 36px;
   }
 }
 
-.upload-details__title {
+.details-modal__title {
   margin: 16px 0;
   font-size: 1.5rem;
   line-height: 2rem;
 }
 
 @media screen and (min-width: 768px) {
-  .upload-details__title {
+  .details-modal__title {
     font-size: 2.25rem;
     line-height: 2.75rem;
   }
 }
 
-.upload-details__description {
+.details-modal__description {
   font-size: 0.8125rem;
   line-height: 1.125rem;
 }
 
 @media screen and (min-width: 768px) {
-  .upload-details__description {
+  .details-modal__description {
     font-size: 0.875rem;
     line-height: 1.375rem;
   }
 }
 
-.upload-details__username {
+.details-modal__username {
   font-size: 0.8125rem;
   line-height: 1.125rem;
 }
 
 @media screen and (min-width: 768px) {
-  .upload-details__username {
+  .details-modal__username {
     font-size: 0.875rem;
     line-height: 1.375rem;
   }

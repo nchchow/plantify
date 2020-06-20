@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const UploadDetails = (matchProps) => {
+const DetailsModal = (matchProps) => {
   const [user, setUser] = useState(null);
   const [upload, setUpload] = useState(null);
 
@@ -30,20 +30,18 @@ const UploadDetails = (matchProps) => {
 
   return (
     <div className="overlay">
-      <article className="upload-details container--modal">
+      <article className="details-modal container--modal">
         {upload && user && (
           <>
             <img
-              className="upload-details__img"
+              className="details-modal__img"
               src={upload.image_url}
               alt={upload.title}
             />
-            <div className="upload-details--text-wrap">
-              <h4 className="upload-details__title">{upload.title}</h4>
-              <p className="upload-details__description">
-                {upload.description}
-              </p>
-              <p className="upload-details__username">{user.name}</p>
+            <div className="details-modal--text-wrap">
+              <h4 className="details-modal__title">{upload.title}</h4>
+              <p className="details-modal__description">{upload.description}</p>
+              <p className="details-modal__username">{user.name}</p>
             </div>
           </>
         )}
@@ -52,4 +50,4 @@ const UploadDetails = (matchProps) => {
   );
 };
 
-export default UploadDetails;
+export default DetailsModal;

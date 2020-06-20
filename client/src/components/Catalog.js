@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import axios from "axios";
 import Card from "./Card";
-import UploadDetails from "./UploadDetails";
+import DetailsModal from "./DetailsModal";
 
 const Catalog = () => {
   const [uploads, setUploads] = useState([]);
@@ -34,7 +34,7 @@ const Catalog = () => {
           </li>
         ))
       )}
-      <Route path="/uploads/:upload_id" component={UploadDetails} />
+      <Route path="/uploads/:upload_id" component={DetailsModal} />
     </ul>
   );
 };
