@@ -33,7 +33,7 @@
       margin-left: 32px;
       width: 75%;
       align-self: flex-start;
-      @include headerText();
+      @include headingText();
     }
 
     @include desktop() {
@@ -45,8 +45,8 @@
       margin-left: 72px;
     }
 
-    &--header {
-      @include heroHeaderText();
+    &--heading {
+      @include heroHeadingText();
     }
 
     .highlight {

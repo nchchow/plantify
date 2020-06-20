@@ -18,21 +18,21 @@ $highlight-color: #27ae60;
   line-height: $line-height;
 }
 
-@mixin heroHeaderText() {
+@mixin heroHeadingText() {
   @include setFontSizeLineHeight(2.85rem, 3rem);
   @include tablet() {
     @include setFontSizeLineHeight(3.75rem, 4.25rem);
   }
 }
 
-@mixin headerText() {
+@mixin headingText() {
   @include setFontSizeLineHeight(1.5rem, 2rem);
   @include tablet() {
     @include setFontSizeLineHeight(2.25rem, 2.75rem);
   }
 }
 
-@mixin subHeaderText() {
+@mixin subHeadingText() {
   @include setFontSizeLineHeight(0.875rem, 1.375rem);
   @include tablet() {
     @include setFontSizeLineHeight(1rem, 1.5rem);

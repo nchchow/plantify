@@ -118,7 +118,7 @@
       margin-left: 1rem;
       font-weight: 700;
 
-      @include headerText();
+      @include headingText();
 
       @include tablet() {
         margin-left: 0;
@@ -132,7 +132,7 @@
     .fa-heart {
       margin: 0.5rem;
       margin-right: 1rem;
-      @include headerText();
+      @include headingText();
       cursor: pointer;
 
       @include desktop() {

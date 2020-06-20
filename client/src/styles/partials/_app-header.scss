@@ -11,7 +11,7 @@
   &__logo {
     margin: 1.2rem 0;
     margin-left: 1rem;
-    @include subHeaderText();
+    @include subHeadingText();
 
     @include tablet() {
       margin-left: 0;
