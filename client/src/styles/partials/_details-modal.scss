@@ -2,16 +2,23 @@
 .details-modal {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background: #fff;
   width: 100%;
   height: 100vh;
+
+  @include tablet() {
+    margin: 185px auto;
+    justify-content: flex-start;
+    width: 718px;
+    height: 750px;
+    border-radius: 8px;
+  }
 
   @include desktop() {
     margin: 85px auto;
     width: 768px;
     height: 600px;
-    border-radius: 8px;
   }
 
   &__img {
@@ -19,8 +26,13 @@
     height: 400px;
     object-fit: cover;
 
-    @include desktop() {
+    @include tablet() {
+      margin-bottom: 60px;
       border-radius: 8px 8px 0 0;
+    }
+
+    @include desktop {
+      margin-bottom: 0;
     }
   }
 
