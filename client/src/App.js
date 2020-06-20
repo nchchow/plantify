@@ -9,8 +9,8 @@ function App() {
     <Router>
       <Header />
       <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/upload" component={Upload} exact />
+        <Route path="/" component={Home} />
+        <Route path="/upload/new" component={Upload} exact />
       </Switch>
     </Router>
   );

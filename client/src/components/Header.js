@@ -11,7 +11,10 @@ const Header = () => {
         <nav className="app-header__nav">
           <ul className="app-header__nav--list">
             <li className="app-header__nav--item">
-              <NavLink to="/upload" className="app-header__nav--upload-button">
+              <NavLink
+                to="/upload/new"
+                className="app-header__nav--upload-button"
+              >
                 Upload
               </NavLink>
             </li>
