@@ -20,6 +20,18 @@ a {
   text-decoration: none;
 }
 
+.button--primary {
+  border: none;
+  background: #000;
+  color: #fff;
+  font-family: $font-main;
+  outline: none;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
 .input-text-field {
   margin-left: 4px;
   padding-bottom: 1px;

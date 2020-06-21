@@ -105,12 +105,7 @@ $text-field-border: #e1e1e1;
     }
 
     .chooseFileButton {
-      background: #000;
-      font-family: $font-main;
-
-      &:hover {
-        background: rgba(0, 0, 0, 0.7);
-      }
+      @extend .button--primary;
     }
 
     &__input-wrapper {
@@ -132,14 +127,11 @@ $text-field-border: #e1e1e1;
     }
 
     &__submit-button {
+      @extend .button--primary;
       align-self: center;
-      border: none;
       border-radius: 30px;
       height: 40px;
       width: 50%;
-      color: #fff;
-      background: #000;
-      font-family: $font-main;
       @include subHeadingText();
 
       &:hover {
