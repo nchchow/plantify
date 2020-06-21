@@ -2,7 +2,6 @@ const express = require("express");
 const User = require("../models/user");
 const Upload = require("../models/upload");
 const router = express.Router();
-// const formidable = require("formidable");
 const multer = require("multer");
 const path = require("path");
 
@@ -59,7 +58,7 @@ router.route("/:upload_id").put((req, res) => {
 });
 
 // create an upload
-router.route("/").post((req, res, next) => {
+router.route("/").post((req, res) => {
   const { userId, title, description } = req.body;
   // catch invalid user ids
   // User.where("user_id", userId)
@@ -73,23 +72,6 @@ router.route("/").post((req, res, next) => {
     if (err) res.send(500).json({ err: err });
     console.log("file: ", req.file);
   });
-  // ****************************
-  // const form = formidable();
-  // console.log(form);
-  // form.uploadDir = "../uploaded_photos";
-  // form.keepExtensions = true;
-  // form.maxFieldSize = 5 * 1024 * 1024;
-  // form.parse(req, (err, fields, files) => {
-  //   console.log("parsing");
-  //   if (err) {
-  //     console.log(err);
-  //     next(err);
-  //     return;
-  //   }
-  //   console.log("files:", files);
-  //   // res.json({ fields, files });
-  // });
-  // console.log("end");
   // ****************************
   // save new upload in db
   // new Upload({
