@@ -39,7 +39,6 @@ a {
 }
 
 .input-text-field, .upload--form__title--input, .upload--form__description--input {
-  margin-left: 4px;
   padding-bottom: 1px;
   padding-left: 4px;
   border: none;

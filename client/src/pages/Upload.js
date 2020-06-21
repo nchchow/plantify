@@ -56,7 +56,6 @@ const Upload = () => {
           <input
             type="text"
             name="title"
-            placeholder="Title"
             onChange={handleTitleChange}
             className="upload--form__title--input"
           />
@@ -66,7 +65,6 @@ const Upload = () => {
           <textarea
             name="description"
             id="description"
-            placeholder="Description"
             cols="30"
             rows="5"
             onChange={handleDescriptionChange}
