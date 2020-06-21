@@ -1,0 +1,62 @@
+// UPLOAD PAGE
+.upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100vw;
+
+  &--form {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 580px;
+    width: 450px;
+
+    &__heading {
+      margin: 12px 0;
+    }
+
+    .fileContainer {
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .chooseFileButton {
+      @extend .button--primary;
+    }
+
+    &__input-wrapper {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__title--input {
+      @extend .input-text-field;
+      height: 36px;
+    }
+
+    &__description--input {
+      @extend .input-text-field;
+      padding-top: 8px;
+      height: 80px;
+      resize: none;
+    }
+
+    &__submit-button {
+      @extend .button--primary;
+      align-self: center;
+      border-radius: 30px;
+      height: 40px;
+      width: 50%;
+      @include subHeadingText();
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.7);
+      }
+    }
+  }
+}
