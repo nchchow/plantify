@@ -2,8 +2,26 @@ const express = require("express");
 const User = require("../models/user");
 const Upload = require("../models/upload");
 const router = express.Router();
+// const formidable = require("formidable");
+const multer = require("multer");
+const path = require("path");
 
 // controllers
+const storage = multer.diskStorage({
+  destination: "./uploaded_photos/",
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+    );
+  },
+});
+
+const upload = multer({
+  storage,
+  limits: { fileSize: 5 * 1024 * 1024 },
+}).single("image");
+
 const {
   getUploads,
   getUploadById,
@@ -40,22 +58,52 @@ router.route("/:upload_id").put((req, res) => {
     .catch((err) => res.status(500).json({ error: "cannot save" }));
 });
 
-// // create an upload
-// router.route("/").post((req, res) => {
-//   User.where("user_id", req.body.userId)
-//     .fetch()
-//     .then()
-//     .catch((user) =>
-//       res.status(400).json({ error: "Please provide valid user id" })
-//     );
-//   new Upload({
-//     upload_id: Date.now(), // TODO: uuid()
-//     liked_by: JSON.stringify([""]),
-//     owner_id: req.body.ownerId,
-//   })
-//     .save()
-//     .then((newUpload) => res.statuus(201).json({ newUpload }));
-// });
+// create an upload
+router.route("/").post((req, res, next) => {
+  const { userId, title, description } = req.body;
+  // catch invalid user ids
+  // User.where("user_id", userId)
+  //   .fetch()
+  //   .then()
+  //   .catch((user) => {
+  //     res.status(400).json({ error: "Please provide valid user id" });
+  //   });
+
+  upload(req, res, (err) => {
+    if (err) res.send(500).json({ err: err });
+    console.log("file: ", req.file);
+  });
+  // ****************************
+  // const form = formidable();
+  // console.log(form);
+  // form.uploadDir = "../uploaded_photos";
+  // form.keepExtensions = true;
+  // form.maxFieldSize = 5 * 1024 * 1024;
+  // form.parse(req, (err, fields, files) => {
+  //   console.log("parsing");
+  //   if (err) {
+  //     console.log(err);
+  //     next(err);
+  //     return;
+  //   }
+  //   console.log("files:", files);
+  //   // res.json({ fields, files });
+  // });
+  // console.log("end");
+  // ****************************
+  // save new upload in db
+  // new Upload({
+  //   upload_id: "12", // TODO: use random id
+  //   liked_by: "[]", // JSON.stringify([])
+  //   owner_id: userId,
+  //   title,
+  //   description,
+  //   image_url: "",
+  // })
+  //   .save(null, { method: "insert" })
+  //   .then((newUpload) => res.status(201).json({ newUpload }))
+  //   .catch((err) => console.log(err));
+});
 
 // // delete an upload
 // router.router("/:id").delete((req, res) => {
