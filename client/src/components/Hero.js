@@ -6,7 +6,7 @@ const Hero = () => {
       <div className="hero__content container--fluid">
         <h1 className="hero__content--heading">
           Diversify your <span className="highlight">plant</span> collection by
-          <span className="highlight"> swapping</span> with others
+          <span className="highlight"> trading</span> with others
         </h1>
         <p className="hero__content--paragraph">
           <i className={"fas fa-heart"}></i> the plants you want, if they{" "}

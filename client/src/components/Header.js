@@ -6,7 +6,7 @@ const Header = () => {
     <header className="app-header">
       <div className="container--fluid flex-center">
         <NavLink to="/" className="app-header__logo-link">
-          <h3 className="app-header__logo">PlantSwap</h3>
+          <h3 className="app-header__logo">Plantify</h3>
         </NavLink>
         <nav className="app-header__nav">
           <ul className="app-header__nav--list">
