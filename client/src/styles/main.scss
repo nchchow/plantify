@@ -78,3 +78,21 @@ $highlight-color: #27ae60;
 @import "./partials/details-modal";
 
 // UPLOAD
+.upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100vw;
+
+  &--form {
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 500px;
+    width: 450px;
+  }
+}
