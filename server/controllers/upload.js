@@ -69,7 +69,6 @@ const postUpload = async (req, res) => {
         });
       // save new upload in db
       return await new Upload({
-        upload_id: Math.floor(Math.random() * 2 * 1024 * 1024 * 1024),
         liked_by: "[]",
         owner_id: userId,
         title,
