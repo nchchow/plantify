@@ -34,7 +34,7 @@ const Upload = () => {
     };
     axios
       .post("/api/uploads", formData, config)
-      .then(console.log)
+      .then()
       .catch((err) => console.log(err));
   };
 
