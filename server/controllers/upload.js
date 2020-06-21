@@ -1,4 +1,7 @@
+const multer = require("multer");
+const path = require("path");
 const Upload = require("../models/upload");
+const User = require("../models/user");
 const { getUserById, updateUserById } = require("./user");
 const { URL, PORT } = process.env;
 
@@ -29,6 +32,54 @@ const getUploadById = async (uploadId) => {
     image_url: `http://${URL}${PORT}/api/images/${image_url}`,
     liked_by: JSON.parse(liked_by),
   };
+};
+
+const postUpload = async (req, res) => {
+  // storage engine
+  const storage = multer.diskStorage({
+    destination: "./uploaded_photos/",
+    filename: (req, file, cb) => {
+      cb(
+        null,
+        `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+      );
+    },
+  });
+
+  // init multer
+  const upload = multer({
+    storage,
+    limits: { fileSize: 5 * 1024 * 1024 },
+  }).single("image");
+
+  // upload
+  upload(req, res, async (err) => {
+    if (err) {
+      return { error: err };
+    } else if (!req.file) {
+      return { error: "Please provide valid image file" };
+    } else {
+      const { userId, title, description } = req.body;
+      // catch invalid user ids
+      User.where("user_id", userId)
+        .fetch()
+        .then()
+        .catch(() => {
+          error: "Please provide valid user id";
+        });
+      // save new upload in db
+      return await new Upload({
+        upload_id: "13", // TODO: use random id
+        liked_by: "[]", // JSON.stringify([])
+        owner_id: userId,
+        title,
+        description,
+        image_url: req.file.filename,
+      })
+        .save(null, { method: "insert" })
+        .catch((err) => err);
+    }
+  });
 };
 
 const updateUploadById = async (uploadId, likedById) => {
@@ -64,4 +115,10 @@ const likeUpload = async (likedId, likedById) => {
   }
 };
 
-module.exports = { getUploads, getUploadById, updateUploadById, likeUpload };
+module.exports = {
+  getUploads,
+  getUploadById,
+  postUpload,
+  updateUploadById,
+  likeUpload,
+};

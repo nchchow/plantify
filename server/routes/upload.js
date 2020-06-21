@@ -2,32 +2,15 @@ const express = require("express");
 const User = require("../models/user");
 const Upload = require("../models/upload");
 const router = express.Router();
-const multer = require("multer");
-const path = require("path");
 
 // controllers
-const storage = multer.diskStorage({
-  destination: "./uploaded_photos/",
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
-    );
-  },
-});
-
-const upload = multer({
-  storage,
-  limits: { fileSize: 5 * 1024 * 1024 },
-}).single("image");
-
 const {
   getUploads,
   getUploadById,
+  postUpload,
   updateUploadById,
   likeUpload,
 } = require("../controllers/upload");
-const { getUserById } = require("../controllers/user");
 
 // get all uploads
 router.route("/").get((req, res) => {
@@ -43,6 +26,13 @@ router.route("/:upload_id").get((req, res) => {
     .catch((err) => res.status(404).json({ error: "not found" }));
 });
 
+// create an upload
+router.route("/").post((req, res) => {
+  postUpload(req, res)
+    .then((newUpload) => res.status(201).json(newUpload))
+    .catch((err) => res.status(500).json({ error: "cannot create" }));
+});
+
 // like an upload
 router.route("/:upload_id/like").put((req, res) => {
   likeUpload(req.params.upload_id, req.body.userId)
@@ -55,36 +45,6 @@ router.route("/:upload_id").put((req, res) => {
   updateUploadById(req.params.upload_id, req.body.likedById)
     .then((updatedUpload) => res.status(200).json(updatedUpload))
     .catch((err) => res.status(500).json({ error: "cannot save" }));
-});
-
-// create an upload
-router.route("/").post((req, res) => {
-  const { userId, title, description } = req.body;
-  // catch invalid user ids
-  // User.where("user_id", userId)
-  //   .fetch()
-  //   .then()
-  //   .catch((user) => {
-  //     res.status(400).json({ error: "Please provide valid user id" });
-  //   });
-
-  upload(req, res, (err) => {
-    if (err) res.send(500).json({ err: err });
-    console.log("file: ", req.file);
-  });
-  // ****************************
-  // save new upload in db
-  // new Upload({
-  //   upload_id: "12", // TODO: use random id
-  //   liked_by: "[]", // JSON.stringify([])
-  //   owner_id: userId,
-  //   title,
-  //   description,
-  //   image_url: "",
-  // })
-  //   .save(null, { method: "insert" })
-  //   .then((newUpload) => res.status(201).json({ newUpload }))
-  //   .catch((err) => console.log(err));
 });
 
 // // delete an upload
