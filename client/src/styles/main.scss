@@ -10,6 +10,7 @@ $font-main: "Roboto Condensed", sans-serif;
 // colors
 $heart-color: #fb3958;
 $highlight-color: #27ae60;
+$text-field-border: #e1e1e1;
 
 // MIXINS
 // font size
@@ -86,13 +87,64 @@ $highlight-color: #27ae60;
   width: 100vw;
 
   &--form {
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 500px;
+    height: 580px;
     width: 450px;
+
+    &__heading {
+      margin: 12px 0;
+    }
+
+    .fileContainer {
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .chooseFileButton {
+      background: #000;
+      font-family: $font-main;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.7);
+      }
+    }
+
+    &__input-wrapper {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__title--input {
+      @extend .input-text-field;
+      height: 36px;
+    }
+
+    &__description--input {
+      @extend .input-text-field;
+      padding-top: 8px;
+      height: 80px;
+      resize: none;
+    }
+
+    &__submit-button {
+      align-self: center;
+      border: none;
+      border-radius: 30px;
+      height: 40px;
+      width: 50%;
+      color: #fff;
+      background: #000;
+      font-family: $font-main;
+      @include subHeadingText();
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.7);
+      }
+    }
   }
 }
