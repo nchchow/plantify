@@ -13,7 +13,7 @@ body {
 }
 
 body {
-  padding-top: 62px;
+  padding-top: 72px;
 }
 
 ul {
@@ -184,7 +184,7 @@ a {
 }
 
 .hero {
-  margin-top: 10px;
+  margin-top: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -592,12 +592,12 @@ a {
           align-items: center;
   height: 90vh;
   width: 100vw;
+  background: url(https://images.unsplash.com/photo-1493219686142-5a8641badc78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .upload--form {
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
   padding: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -609,8 +609,12 @@ a {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  background: rgba(255, 255, 255, 0.7);
   height: 580px;
   width: 450px;
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
 }
 
 .upload--form__heading {
@@ -620,6 +624,7 @@ a {
 .upload--form .fileContainer {
   -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
           box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .upload--form__input-wrapper {
@@ -670,6 +675,7 @@ a {
   padding-left: 4px;
   border: none;
   border-bottom: 1px solid #e1e1e1;
+  background: transparent;
   outline: none;
   font-family: "Roboto Condensed", sans-serif;
   font-size: 0.8125rem;
