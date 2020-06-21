@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ImageUploader from "react-images-upload";
 import axios from "axios";
 
-const Upload = () => {
+const Upload = (props) => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -34,7 +34,9 @@ const Upload = () => {
     };
     axios
       .post("/api/uploads", formData, config)
-      .then()
+      .then(() => {
+        props.history.push("/");
+      })
       .catch((err) => console.log(err));
   };
 
@@ -58,6 +60,7 @@ const Upload = () => {
             name="title"
             onChange={handleTitleChange}
             className="upload--form__title--input"
+            required={true}
           />
         </div>
         <div className="upload--form__input-wrapper">
@@ -69,6 +72,7 @@ const Upload = () => {
             rows="5"
             onChange={handleDescriptionChange}
             className="upload--form__description--input"
+            required={true}
           ></textarea>
         </div>
         <button className="upload--form__submit-button">Submit</button>
