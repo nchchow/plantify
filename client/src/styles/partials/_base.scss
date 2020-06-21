@@ -31,18 +31,3 @@ a {
     background: rgba(0, 0, 0, 0.7);
   }
 }
-
-.input-text-field {
-  padding-bottom: 1px;
-  padding-left: 4px;
-  border: none;
-  border-bottom: 1px solid $text-field-border;
-  outline: none;
-  font-family: $font-main;
-  @include paragraphText();
-
-  &:focus {
-    padding-bottom: 0;
-    border-bottom: 2px solid #000;
-  }
-}
