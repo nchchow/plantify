@@ -82,13 +82,22 @@ const postUpload = async (req, res) => {
   });
 };
 
-const updateUploadById = async (uploadId, likedById) => {
+// appends liked user id to upload, option 3rd parameter to delete liked user id
+const updateUploadById = async (uploadId, likedById, del = false) => {
   const queryResult = await Upload.where("upload_id", uploadId).fetch();
   // deserialize array
   const likedByParsed = JSON.parse(queryResult.attributes.liked_by);
-  const likedBy = likedByParsed.includes(likedById)
-    ? likedByParsed
-    : [...likedByParsed, likedById];
+  let likedBy = [];
+  // if del is set as true, delete operation
+  if (del) {
+    likedBy = likedByParsed.includes(likedById)
+      ? likedByParsed.splice(likedByParsed.indexOf(likedById), 1)
+      : likedByParsed;
+  } else {
+    likedBy = likedByParsed.includes(likedById)
+      ? likedByParsed
+      : [...likedByParsed, likedById];
+  }
   return queryResult.save({
     ...queryResult.attributes,
     liked_by: JSON.stringify(likedBy),
@@ -103,11 +112,11 @@ const likeUpload = async (likedUploadId, likedUserId) => {
   // get its owner
   const owner = await getUserById(upload.owner_id);
   // compare owner likes with liked user uploads
-  const matchedIds = owner.likes.filter(
+  const matchedUploadIds = owner.likes.filter(
     (id) => likedUser.upload_ids.indexOf(id) !== -1
   );
-  if (matchedIds.length > 0) {
-    const matchedUpload = await getUploadById(matchedIds[0]);
+  if (matchedUploadIds.length > 0) {
+    const matchedUploadId = await getUploadById(matchedUploadIds[0]);
     // if there's a match, send notification
     let transport = nodemailer.createTransport({
       host: "smtp.mailtrap.io",
@@ -122,7 +131,7 @@ const likeUpload = async (likedUploadId, likedUserId) => {
       from: "noreply@plantify.com", // Sender address
       to: `${likedUser.email}, ${owner.email}`, // List of recipients
       subject: "Match from Plantify!", // Subject line
-      text: `${likedUser.name} liked ${owner.name}'s ${upload.title} & ${owner.name} liked ${likedUser.name}'s ${matchedUpload.title}`, // Plain text body
+      text: `${likedUser.name} liked ${owner.name}'s ${upload.title} & ${owner.name} liked ${likedUser.name}'s ${matchedUploadId.title}`, // Plain text body
     };
 
     transport.sendMail(message, function (err, info) {
@@ -132,6 +141,9 @@ const likeUpload = async (likedUploadId, likedUserId) => {
         console.log(info);
       }
     });
+    // remove liked upload ids from users
+    updateUploadById(likedUploadId, likedUserId, true);
+    updateUploadById(matchedUploadId, owner.owner_id, true);
   } else {
     // else exchange ids
     await updateUploadById(likedUploadId, likedUserId);
