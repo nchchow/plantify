@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ImageUploader from "react-images-upload";
+import TextareaAutosize from "react-autosize-textarea";
 import axios from "axios";
 
 const Upload = (props) => {
@@ -50,6 +51,7 @@ const Upload = (props) => {
           onChange={handleImageChange}
           imgExtension={[".jpg", ".gif", ".png", ".gif"]}
           maxFileSize={5 * 1024 * 1024}
+          label={"Max file size: 5mb, accepted: jpg | gif | png"}
           name="image"
           withPreview={true}
         />
@@ -65,15 +67,15 @@ const Upload = (props) => {
         </label>
         <label className="upload--form__input-wrapper">
           Description:{" "}
-          <textarea
+          <TextareaAutosize
             name="description"
             id="description"
             cols="30"
-            rows="5"
             onChange={handleDescriptionChange}
             className="upload--form__description--input"
             required={true}
-          ></textarea>
+            maxRows={4}
+          ></TextareaAutosize>
         </label>
         <button className="upload--form__submit-button">Submit</button>
       </form>
