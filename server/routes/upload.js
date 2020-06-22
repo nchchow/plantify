@@ -47,8 +47,8 @@ router.route("/:upload_id").put((req, res) => {
 });
 
 // delete an upload
-router.route("/:id").delete((req, res) => {
-  Upload.where("upload_id", req.params)
+router.route("/:upload_id").delete((req, res) => {
+  Upload.where("upload_id", req.params.upload_id)
     .destroy()
     .then((deletedUpload) => res.status(200).json({ deletedUpload }));
 });

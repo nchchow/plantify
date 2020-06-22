@@ -23,17 +23,16 @@ router.route("/:user_id").get((req, res) => {
     .catch((err) => res.status(404).json({ error: "not found" }));
 });
 
-// // create new user
-// router.route("/").post((req, res) => {
-//   new User({
-//     user_id: Date.now(), // TODO: change to uuid()
-//     name: req.body.name,
-//     upload_ids: JSON.stringify([""]),
-//     likes: JSON.stringify([""]),
-//   })
-//     .save()
-//     .then((newUser) => res.status(200).json(newUser));
-// });
+// create new user
+router.route("/").post((req, res) => {
+  new User({
+    name: req.body.name,
+    upload_ids: "[]",
+    likes: "[]",
+  })
+    .save()
+    .then((newUser) => res.status(200).json(newUser));
+});
 
 // update a user
 router.route("/:user_id").put((req, res) => {
@@ -42,11 +41,11 @@ router.route("/:user_id").put((req, res) => {
     .catch((err) => res.status(500).json({ error: "cannot save" }));
 });
 
-// // delete a user
-// router.route("/:id").delete((req, res) => {
-//   User.where("user_id", req.params)
-//     .destroy()
-//     .then((deletedUser) => res.status(200).json(deletedUser));
-// });
+// delete a user
+router.route("/:user_id").delete((req, res) => {
+  User.where("user_id", req.params.user_id)
+    .destroy()
+    .then((deletedUser) => res.status(200).json(deletedUser));
+});
 
 module.exports = router;
