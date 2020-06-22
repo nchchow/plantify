@@ -35,7 +35,7 @@ router.route("/").post((req, res) => {
 // like an upload
 router.route("/:upload_id/like").put((req, res) => {
   likeUpload(req.params.upload_id, req.body.userId)
-    .then(() => res.sendStatus(200))
+    .then((matchStatus) => res.status(200).json(matchStatus))
     .catch((err) => res.status(404).json({ error: "not found", err }));
 });
 
