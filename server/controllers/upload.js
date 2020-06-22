@@ -1,5 +1,6 @@
 const multer = require("multer");
 const path = require("path");
+const nodemailer = require("nodemailer");
 const Upload = require("../models/upload");
 const User = require("../models/user");
 const { getUserById, updateUserById } = require("./user");
@@ -94,23 +95,47 @@ const updateUploadById = async (uploadId, likedById) => {
   });
 };
 
-const likeUpload = async (likedId, likedById) => {
+const likeUpload = async (likedUploadId, likedUserId) => {
   // get user that liked
-  const likedUser = await getUserById(likedById);
+  const likedUser = await getUserById(likedUserId);
   // get upload from upload id
-  const upload = await getUploadById(likedId);
+  const upload = await getUploadById(likedUploadId);
   // get its owner
   const owner = await getUserById(upload.owner_id);
   // compare owner likes with liked user uploads
-  const isMatch = owner.likes.some((id) => likedUser.upload_ids.includes(id));
-  if (isMatch) {
+  const matchedIds = owner.likes.filter(
+    (id) => likedUser.upload_ids.indexOf(id) !== -1
+  );
+  if (matchedIds.length > 0) {
+    const matchedUpload = await getUploadById(matchedIds[0]);
     // if there's a match, send notification
-    // TODO: send notification
-    console.log("Matched!");
+    let transport = nodemailer.createTransport({
+      host: "smtp.mailtrap.io",
+      port: 2525,
+      auth: {
+        user: "785120690e3544",
+        pass: "189b27254f7406",
+      },
+    });
+
+    const message = {
+      from: "noreply@plantify.com", // Sender address
+      to: `${likedUser.email}, ${owner.email}`, // List of recipients
+      subject: "Match from Plantify!", // Subject line
+      text: `${likedUser.name} liked ${owner.name}'s ${upload.title} & ${owner.name} liked ${matchedUpload.title}`, // Plain text body
+    };
+
+    transport.sendMail(message, function (err, info) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(info);
+      }
+    });
   } else {
     // else exchange ids
-    await updateUploadById(likedId, likedById);
-    await updateUserById(likedById, { likedId });
+    await updateUploadById(likedUploadId, likedUserId);
+    await updateUserById(likedUserId, { likedId: likedUploadId });
   }
 };
 
