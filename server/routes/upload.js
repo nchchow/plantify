@@ -8,11 +8,9 @@ const {
   getUploadById,
 } = require("../controllers/upload/getUploads");
 
-const {
-  postUpload,
-  updateUploadById,
-  likeUpload,
-} = require("../controllers/upload");
+const { postUpload } = require("../controllers/upload/postUpload");
+
+const { updateUploadById, likeUpload } = require("../controllers/upload");
 
 // get all uploads
 router.route("/").get((req, res) => {
