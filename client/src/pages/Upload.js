@@ -53,7 +53,7 @@ const Upload = (props) => {
           name="image"
           withPreview={true}
         />
-        <div className="upload--form__input-wrapper">
+        <label className="upload--form__input-wrapper">
           Title:{" "}
           <input
             type="text"
@@ -62,8 +62,8 @@ const Upload = (props) => {
             className="upload--form__title--input"
             required={true}
           />
-        </div>
-        <div className="upload--form__input-wrapper">
+        </label>
+        <label className="upload--form__input-wrapper">
           Description:{" "}
           <textarea
             name="description"
@@ -74,7 +74,7 @@ const Upload = (props) => {
             className="upload--form__description--input"
             required={true}
           ></textarea>
-        </div>
+        </label>
         <button className="upload--form__submit-button">Submit</button>
       </form>
     </article>
