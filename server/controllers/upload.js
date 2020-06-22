@@ -122,7 +122,7 @@ const likeUpload = async (likedUploadId, likedUserId) => {
       from: "noreply@plantify.com", // Sender address
       to: `${likedUser.email}, ${owner.email}`, // List of recipients
       subject: "Match from Plantify!", // Subject line
-      text: `${likedUser.name} liked ${owner.name}'s ${upload.title} & ${owner.name} liked ${matchedUpload.title}`, // Plain text body
+      text: `${likedUser.name} liked ${owner.name}'s ${upload.title} & ${owner.name} liked ${likedUser.name}'s ${matchedUpload.title}`, // Plain text body
     };
 
     transport.sendMail(message, function (err, info) {
