@@ -6,6 +6,9 @@ const router = express.Router();
 const {
   getUploads,
   getUploadById,
+} = require("../controllers/upload/getUploads");
+
+const {
   postUpload,
   updateUploadById,
   likeUpload,

@@ -4,36 +4,7 @@ const nodemailer = require("nodemailer");
 const Upload = require("../models/upload");
 const User = require("../models/user");
 const { getUserById, updateUserById } = require("./user");
-const { URL, PORT } = process.env;
-
-const getUploads = async (query) => {
-  const { models } = await Upload.where(query).fetchAll({
-    withRelated: ["user"],
-  });
-  // return new array from deserialized objects
-  return models.map(({ attributes }) => {
-    const { image_url, liked_by } = attributes;
-    return {
-      ...attributes,
-      image_url: `http://${URL}${PORT}/api/images/${image_url}`,
-      liked_by: JSON.parse(liked_by),
-    };
-  });
-};
-
-const getUploadById = async (uploadId) => {
-  const { attributes } = await Upload.where("upload_id", uploadId).fetch({
-    withRelated: "user",
-  });
-  // convert query to destructured object
-  const { image_url, liked_by } = attributes;
-  // send upload data with deserialize arrays
-  return {
-    ...attributes,
-    image_url: `http://${URL}${PORT}/api/images/${image_url}`,
-    liked_by: JSON.parse(liked_by),
-  };
-};
+const { URL, PORT, EMAIL_USER, EMAIL_PASS } = process.env;
 
 const postUpload = async (req, res) => {
   // storage engine
@@ -127,8 +98,8 @@ const sendEmail = (likedUser, upload, owner, matchedUpload) => {
     host: "smtp.mailtrap.io",
     port: 2525,
     auth: {
-      user: "785120690e3544",
-      pass: "189b27254f7406",
+      user: EMAIL_USER,
+      pass: EMAIL_PASS,
     },
   });
 
@@ -149,8 +120,6 @@ const sendEmail = (likedUser, upload, owner, matchedUpload) => {
 };
 
 module.exports = {
-  getUploads,
-  getUploadById,
   postUpload,
   updateUploadById,
   likeUpload,
