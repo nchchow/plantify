@@ -1,5 +1,4 @@
 const express = require("express");
-const User = require("../models/user");
 const Upload = require("../models/upload");
 const router = express.Router();
 
@@ -47,11 +46,11 @@ router.route("/:upload_id").put((req, res) => {
     .catch((err) => res.status(500).json({ error: "cannot save" }));
 });
 
-// // delete an upload
-// router.router("/:id").delete((req, res) => {
-//   Upload.where("upload_id", req.params)
-//     .destroy()
-//     .then((deletedUpload) => res.status(200).json({ deletedUpload }));
-// });
+// delete an upload
+router.route("/:id").delete((req, res) => {
+  Upload.where("upload_id", req.params)
+    .destroy()
+    .then((deletedUpload) => res.status(200).json({ deletedUpload }));
+});
 
 module.exports = router;
