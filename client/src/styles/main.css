@@ -644,7 +644,7 @@ a {
 }
 
 .upload--form__description--input {
-  padding-top: 4px;
+  padding-top: 8px;
   height: 36px;
   resize: none;
 }
