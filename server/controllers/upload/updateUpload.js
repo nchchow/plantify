@@ -1,6 +1,8 @@
 const nodemailer = require("nodemailer");
 const Upload = require("../../models/upload");
-const { getUserById, updateUserById } = require("../user");
+const { getUploadById } = require("./getUploads");
+const { getUserById } = require("../user/getUsers");
+const { updateUserById } = require("../user/updateUser");
 const { EMAIL_USER, EMAIL_PASS } = process.env;
 
 const updateUploadById = async (uploadId, likedById) => {
@@ -17,7 +19,7 @@ const updateUploadById = async (uploadId, likedById) => {
 };
 
 const likeUpload = async (likedUploadId, likedUserId) => {
-  exchangeIds(likedUploadId, likedUserId);
+  await exchangeIds(likedUploadId, likedUserId);
   // get user that liked
   const likedUser = await getUserById(likedUserId);
   // get upload from upload id
