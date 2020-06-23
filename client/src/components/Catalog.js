@@ -3,10 +3,12 @@ import { Route } from "react-router-dom";
 import axios from "axios";
 import Card from "./Card";
 import DetailsModal from "./DetailsModal";
+import MatchedModal from "./MatchedModal";
 
 const Catalog = () => {
   const [uploads, setUploads] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     populateCatalog();
@@ -29,9 +31,12 @@ const Catalog = () => {
       ) : (
         uploads.map((upload) => (
           <li key={upload.upload_id} className="catalog__item">
-            <Card upload={upload} />
+            <Card upload={upload} launchMatchedModal={setIsModalVisible} />
           </li>
         ))
+      )}
+      {isModalVisible && (
+        <MatchedModal closeHandler={() => setIsModalVisible(false)} />
       )}
       <Route path="/feed/details/:upload_id" component={DetailsModal} />
     </ul>

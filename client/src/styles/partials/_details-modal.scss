@@ -1,11 +1,6 @@
 // DETAILS MODAL
 .details-modal {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  background: #fff;
-  width: 100%;
-  height: 100vh;
+  @extend .modal;
 
   @include tablet() {
     margin: 185px auto;

@@ -6,6 +6,7 @@ $lg-desktop-breakpoint: 1440px;
 
 // fonts
 $font-main: "Roboto Condensed", sans-serif;
+$font-script: "Euphoria Script", cursive;
 
 // colors
 $heart-color: #fb3958;
@@ -78,3 +79,39 @@ $text-field-border: #e1e1e1;
 @import "./partials/catalog";
 @import "./partials/details-modal";
 @import "./partials/upload-page";
+
+// MATCH MODAL
+.matched-modal {
+  @extend .modal;
+  background-image: url(https://images.unsplash.com/photo-1538506392157-218c11f95129?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1302&q=80);
+  background-size: cover;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  @include tablet() {
+    height: 400px;
+    width: 500px;
+  }
+
+  &--text-wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+
+    @include tablet() {
+      align-items: center;
+    }
+  }
+
+  &__title {
+    margin-left: 60px;
+    font-family: $font-script;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    @include headingText();
+  }
+}

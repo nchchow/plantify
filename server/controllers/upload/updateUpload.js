@@ -34,9 +34,9 @@ const likeUpload = async (likedUploadId, likedUserId) => {
     const matchedUpload = await getUploadById(matchedIds[0]);
     // if there's a match, send notification
     sendEmail(likedUser, upload, owner, matchedUpload);
-    return { matched: true };
+    return { isMatched: true };
   } else {
-    return { matched: false };
+    return { isMatched: false };
   }
 };
 

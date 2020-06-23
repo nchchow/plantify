@@ -39,6 +39,88 @@ a {
   background: rgba(0, 0, 0, 0.7);
 }
 
+.modal, .details-modal, .matched-modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  background: #fff;
+  width: 100%;
+  height: 100vh;
+}
+
+@media screen and (min-width: 768px) {
+  .modal, .details-modal, .matched-modal {
+    margin: 185px auto;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    width: 718px;
+    height: 750px;
+    border-radius: 8px;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .modal, .details-modal, .matched-modal {
+    margin: 85px auto;
+    width: 768px;
+    height: 600px;
+  }
+}
+
+.modal__close-button {
+  margin-top: 90px;
+  border: none;
+  background: transparent;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  width: 40px;
+  height: 50px;
+  cursor: pointer;
+  outline: none;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+}
+
+@media screen and (min-width: 768px) {
+  .modal__close-button {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modal__close-button {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+  }
+}
+
+.modal__close-button .fa-times {
+  -webkit-transform: rotate(0);
+          transform: rotate(0);
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+
+.modal__close-button:hover .fa-times {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+@media screen and (min-width: 768px) {
+  .modal__close-button {
+    margin-top: 0;
+  }
+}
+
 .container {
   margin: 0 auto;
   width: 288px;
@@ -102,13 +184,17 @@ a {
           align-items: center;
 }
 
-.overlay {
+.overlay, .overlay--light {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.7);
+}
+
+.overlay--light {
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .app-header {
@@ -470,22 +556,6 @@ a {
   visibility: visible;
 }
 
-.details-modal {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  background: #fff;
-  width: 100%;
-  height: 100vh;
-}
-
 @media screen and (min-width: 768px) {
   .details-modal {
     margin: 185px auto;
@@ -689,5 +759,57 @@ a {
 .input-text-field:focus, .upload--form__title--input:focus, .upload--form__description--input:focus {
   padding-bottom: 0;
   border-bottom: 2px solid #000;
+}
+
+.matched-modal {
+  background-image: url(https://images.unsplash.com/photo-1538506392157-218c11f95129?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1302&q=80);
+  background-size: cover;
+  -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.matched-modal:hover {
+  -webkit-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+          box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 768px) {
+  .matched-modal {
+    height: 400px;
+    width: 500px;
+  }
+}
+
+.matched-modal--text-wrapper {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media screen and (min-width: 768px) {
+  .matched-modal--text-wrapper {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.matched-modal__title {
+  margin-left: 60px;
+  font-family: "Euphoria Script", cursive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .matched-modal__title {
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+  }
 }
 /*# sourceMappingURL=main.css.map */
