@@ -1,8 +1,7 @@
 const nodemailer = require("nodemailer");
-const Upload = require("../models/upload");
-const User = require("../models/user");
-const { getUserById, updateUserById } = require("./user");
-const { URL, PORT, EMAIL_USER, EMAIL_PASS } = process.env;
+const Upload = require("../../models/upload");
+const { getUserById, updateUserById } = require("../user");
+const { EMAIL_USER, EMAIL_PASS } = process.env;
 
 const updateUploadById = async (uploadId, likedById) => {
   const queryResult = await Upload.where("upload_id", uploadId).fetch();
