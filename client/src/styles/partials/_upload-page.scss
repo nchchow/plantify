@@ -1,0 +1,79 @@
+// UPLOAD PAGE
+.upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100vw;
+  background: url("../assets/upload_bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &--form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background: rgba(255, 255, 255, 0.8);
+    height: 580px;
+    width: 450px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+
+    &__heading {
+      margin: 12px 0;
+    }
+
+    .fileContainer {
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .chooseFileButton {
+      @extend .button--primary;
+    }
+
+    &__input-wrapper {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__title--input {
+      @extend .input-text-field;
+      height: 36px;
+    }
+
+    &__description--input {
+      @extend .input-text-field;
+      padding-top: 8px;
+      height: 36px;
+      resize: none;
+    }
+
+    &__submit-button {
+      @extend .button--primary;
+      align-self: center;
+      border-radius: 30px;
+      height: 40px;
+      width: 50%;
+      @include subHeadingText();
+    }
+  }
+}
+
+.input-text-field {
+  padding-bottom: 1px;
+  padding-left: 4px;
+  border: none;
+  border-bottom: 1px solid $text-field-border;
+  background: transparent;
+  outline: none;
+  font-family: $font-main;
+  @include paragraphText();
+
+  &:focus {
+    padding-bottom: 0;
+    border-bottom: 2px solid #000;
+  }
+}

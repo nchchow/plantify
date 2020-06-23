@@ -1,0 +1,57 @@
+// CONTAINERS
+.container {
+  margin: 0 auto;
+  width: 288px;
+
+  @include tablet() {
+    width: 720px;
+  }
+
+  @include desktop() {
+    width: 1016px;
+  }
+
+  @include lg-desktop() {
+    width: 1080px;
+  }
+
+  &--fluid {
+    margin: 0;
+    width: auto;
+
+    @include tablet() {
+      margin: 0 36px;
+    }
+
+    @include lg-desktop() {
+      margin: 0 72px;
+    }
+  }
+
+  &--modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+
+  &--light {
+    @extend .overlay;
+    background: rgba(255, 255, 255, 0.7);
+  }
+}

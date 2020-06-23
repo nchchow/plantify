@@ -1,0 +1,86 @@
+// BASE
+html,
+body {
+  margin: 0;
+  font-family: $font-main;
+  letter-spacing: 0.05rem;
+}
+
+body {
+  padding-top: 72px;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.button--primary {
+  border: none;
+  background: #000;
+  color: #fff;
+  font-family: $font-main;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: #fff;
+  width: 100%;
+  height: 100vh;
+
+  @include tablet() {
+    margin: 185px auto;
+    justify-content: flex-start;
+    width: 718px;
+    height: 750px;
+    border-radius: 8px;
+  }
+
+  @include desktop() {
+    margin: 85px auto;
+    width: 768px;
+    height: 600px;
+  }
+
+  &__close-button {
+    margin-top: 90px;
+    border: none;
+    background: transparent;
+    align-self: flex-end;
+    width: 40px;
+    height: 50px;
+    cursor: pointer;
+    outline: none;
+    @include subHeadingText();
+
+    @include tablet() {
+      align-self: flex-start;
+    }
+
+    .fa-times {
+      transform: rotate(0);
+      transition: 1s ease-in-out;
+    }
+
+    &:hover .fa-times {
+      transform: rotate(360deg);
+    }
+
+    @include tablet() {
+      margin-top: 0;
+    }
+  }
+}
