@@ -58,10 +58,6 @@
       height: 40px;
       width: 50%;
       @include subHeadingText();
-
-      &:hover {
-        background: rgba(0, 0, 0, 0.7);
-      }
     }
   }
 }

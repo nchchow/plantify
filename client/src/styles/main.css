@@ -667,10 +667,6 @@ a {
   }
 }
 
-.upload--form__submit-button:hover {
-  background: rgba(0, 0, 0, 0.7);
-}
-
 .input-text-field, .upload--form__title--input, .upload--form__description--input {
   padding-bottom: 1px;
   padding-left: 4px;

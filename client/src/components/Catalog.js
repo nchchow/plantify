@@ -6,12 +6,11 @@ import DetailsModal from "./DetailsModal";
 
 const Catalog = () => {
   const [uploads, setUploads] = useState([]);
-  const [pages, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     populateCatalog();
-  }, [pages]);
+  }, []);
 
   const populateCatalog = () => {
     axios
