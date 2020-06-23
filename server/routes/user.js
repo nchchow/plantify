@@ -3,11 +3,9 @@ const User = require("../models/user");
 const router = express.Router();
 
 // controllers
-const {
-  getUsers,
-  getUserById,
-  updateUserById,
-} = require("../controllers/user");
+const { getUsers, getUserById } = require("../controllers/user/getUsers");
+
+const { updateUserById } = require("../controllers/user/updateUser");
 
 // get all users
 router.route("/").get((req, res) => {
