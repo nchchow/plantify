@@ -33,6 +33,7 @@ const Upload = (props) => {
         "content-type": "multipart/form-data",
       },
     };
+
     axios
       .post("/api/uploads", formData, config)
       .then(() => {
