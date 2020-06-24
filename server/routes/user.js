@@ -22,15 +22,15 @@ router.route("/:user_id").get((req, res) => {
 });
 
 // create new user
-router.route("/").post((req, res) => {
-  new User({
-    name: req.body.name,
-    upload_ids: "[]",
-    likes: "[]",
-  })
-    .save()
-    .then((newUser) => res.status(200).json(newUser));
-});
+// router.route("/").post((req, res) => {
+//   new User({
+//     name: req.body.name,
+//     upload_ids: "[]",
+//     likes: "[]",
+//   })
+//     .save()
+//     .then((newUser) => res.status(200).json(newUser));
+// });
 
 // update a user
 router.route("/:user_id").put((req, res) => {
