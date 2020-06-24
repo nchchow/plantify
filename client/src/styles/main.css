@@ -26,7 +26,7 @@ a {
   text-decoration: none;
 }
 
-.button--primary, .app-header__nav--upload-button, .upload--form .chooseFileButton, .upload--form__submit-button {
+.button--primary, .app-header__nav--button, .app-header__nav--button--upload, .app-header__nav--button--signup, .app-header__nav--button--signin, .upload--form .chooseFileButton, .upload--form__submit-button {
   border: none;
   background: #000;
   color: #fff;
@@ -35,7 +35,7 @@ a {
   cursor: pointer;
 }
 
-.button--primary:hover, .app-header__nav--upload-button:hover, .upload--form .chooseFileButton:hover, .upload--form__submit-button:hover {
+.button--primary:hover, .app-header__nav--button:hover, .app-header__nav--button--upload:hover, .app-header__nav--button--signup:hover, .app-header__nav--button--signin:hover, .upload--form .chooseFileButton:hover, .upload--form__submit-button:hover {
   background: rgba(0, 0, 0, 0.7);
 }
 
@@ -262,13 +262,22 @@ a {
   display: flex;
 }
 
-.app-header__nav--upload-button {
+.app-header__nav--button, .app-header__nav--button--upload, .app-header__nav--button--signup, .app-header__nav--button--signin {
   display: inline-block;
   text-align: center;
   width: 100px;
   height: 40px;
   line-height: 40px;
   border-radius: 20px;
+}
+
+.app-header__nav--button--signin {
+  background: #fff;
+  color: #000;
+}
+
+.app-header__nav--button--signin:hover {
+  background: #fff;
 }
 
 .hero {

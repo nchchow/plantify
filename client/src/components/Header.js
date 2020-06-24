@@ -10,24 +10,24 @@ const Header = () => {
         </NavLink>
         <nav className="app-header__nav">
           <ul className="app-header__nav--list">
-            <li className="app-header__nav--item">
+            {/* <li className="app-header__nav--item">
               <NavLink
                 to="/upload/new"
-                className="app-header__nav--upload-button"
+                className="app-header__nav--button--upload"
               >
                 Upload
               </NavLink>
+            </li> */}
+            <li>
+              <NavLink to="/signup" className="app-header__nav--button--signup">
+                Sign Up
+              </NavLink>
             </li>
-            {/* <li className="app-header__nav--item">
-              <NavLink to="/" className="app-header__nav--link">
+            <li className="app-header__nav--item">
+              <NavLink to="/signin" className="app-header__nav--button--signin">
                 Sign In
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/" className="app-header__nav--link">
-                Sign Up
-              </NavLink>
-            </li> */}
           </ul>
         </nav>
       </div>

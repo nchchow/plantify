@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Header from "./components/Header";
 import Feed from "./pages/Feed";
+import Signup from "./pages/Signup";
 import Upload from "./pages/Upload";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Redirect to="/feed" />
         </Route>
         <Route path="/feed" component={Feed} />
+        <Route path="/signup" component={Signup} />
         <Route path="/upload/new" component={Upload} exact />
       </Switch>
     </Router>
