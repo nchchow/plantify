@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Signup = () => {
-  const [name, setName] = useState("");
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,8 +12,7 @@ const Signup = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("/api/users/signup", {
-        name,
+      .post("/api/users/login", {
         email,
         password,
       })
@@ -25,16 +23,7 @@ const Signup = () => {
   return (
     <article>
       <form onSubmit={handleSubmit}>
-        <h1>SIGNUP</h1>
-        <label>
-          Name:{" "}
-          <input
-            type="text"
-            name="name"
-            required={true}
-            onChange={(e) => handleChange(e, setName)}
-          />
-        </label>
+        <h1>LOGIN</h1>
         <label>
           Email:{" "}
           <input
@@ -59,4 +48,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

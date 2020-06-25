@@ -24,8 +24,8 @@ const Header = () => {
               </NavLink>
             </li>
             <li className="app-header__nav--item">
-              <NavLink to="/signin" className="app-header__nav--button--signin">
-                Sign In
+              <NavLink to="/login" className="app-header__nav--button--login">
+                Log In
               </NavLink>
             </li>
           </ul>
