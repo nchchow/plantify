@@ -1,5 +1,8 @@
 const express = require("express");
+const passport = require("passport");
+const bcrypt = require("bcrypt");
 const User = require("../models/user");
+
 const router = express.Router();
 
 // controllers
@@ -22,15 +25,31 @@ router.route("/:user_id").get((req, res) => {
 });
 
 // create new user
-// router.route("/").post((req, res) => {
-//   new User({
-//     name: req.body.name,
-//     upload_ids: "[]",
-//     likes: "[]",
-//   })
-//     .save()
-//     .then((newUser) => res.status(200).json(newUser));
-// });
+router.route("/signup").post(async (req, res) => {
+  const { name, email, password } = req.body;
+  try {
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    await new User({
+      name,
+      email,
+      upload_ids: "[]",
+      likes: "[]",
+      password: hashedPassword,
+    }).save(null, { method: "insert" });
+    res.status(200).json({ name, email });
+  } catch {
+    res.status(400).json({ err: "cannot create" });
+  }
+});
+
+// login
+router.route("/login").post(
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureMessage: "error",
+  })
+);
 
 // update a user
 router.route("/:user_id").put((req, res) => {

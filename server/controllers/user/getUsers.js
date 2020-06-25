@@ -29,4 +29,18 @@ const getUserById = async (userId) => {
   };
 };
 
-module.exports = { getUsers, getUserById };
+const getUserByEmail = async (email) => {
+  const { attributes } = await User.where("email", email).fetch({
+    withRelated: ["uploads"],
+  });
+  // convert query to destructured object
+  const { upload_ids, likes } = attributes;
+  // return user data with deserialize arrays
+  return {
+    ...attributes,
+    upload_ids: JSON.parse(upload_ids),
+    likes: JSON.parse(likes),
+  };
+};
+
+module.exports = { getUsers, getUserById, getUserByEmail };
