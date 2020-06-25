@@ -4,17 +4,16 @@ const bcrypt = require("bcrypt");
 const { getUserById, getUserByEmail } = require("../controllers/user/getUsers");
 
 const authenticateUser = async (email, password, done) => {
-  const user = await getUserByEmail(email);
-  if (user == null)
-    return done(null, false, { message: "no user with that email" });
   try {
+    const user = await getUserByEmail(email);
     if (await bcrypt.compare(password, user.password)) {
       return done(null, user);
     } else {
+      console.log("wrong pass");
       return done(null, false, { message: "password incorrect" });
     }
   } catch (err) {
-    return done(err);
+    return done(null, false, { message: "no user with that email" });
   }
 };
 

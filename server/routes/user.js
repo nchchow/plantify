@@ -43,13 +43,22 @@ router.route("/signup").post(async (req, res) => {
 });
 
 // login
-router.route("/login").post(
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureMessage: "error",
-  })
-);
+router.route("/login").post(function (req, res, next) {
+  passport.authenticate("local", function (err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(400).json({ message: "not found" });
+    }
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      return res.status(200).json({ message: "success" });
+    });
+  })(req, res, next);
+});
 
 // update a user
 router.route("/:user_id").put((req, res) => {
