@@ -8,7 +8,7 @@ At home, we have a solid collection of plants, and we’re also introducing a ne
 
 ## Screenshot
 
-<img width="1280" alt="title-slide" src="https://github.com/nchchow/plantify/files/4834414/Title.Slide.pdf">
+<img width="1280" alt="title-slide" src="https://github.com/nchchow/plantify/files/4834534/Title.Slide.pdf">
 
 ## Tech Stack
 
