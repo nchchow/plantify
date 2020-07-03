@@ -36,7 +36,7 @@ router.route("/signup").post(async (req, res) => {
       likes: "[]",
       password: hashedPassword,
     }).save(null, { method: "insert" });
-    res.status(200).json({ name, email });
+    res.status(200).json({ success: true });
   } catch {
     res.status(400).json({ err: "cannot create" });
   }
