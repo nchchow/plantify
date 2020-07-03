@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Signup = () => {
+const Signup = (props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +18,9 @@ const Signup = () => {
         email,
         password,
       })
-      .then((res) => console.log("submited, res: ", res))
+      .then(({ data }) => {
+        if (data.success) props.history.push("/login");
+      })
       .catch((err) => console.log(err));
   };
 
