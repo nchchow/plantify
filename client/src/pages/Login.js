@@ -18,6 +18,8 @@ const Login = (props) => {
       })
       .then(({ data }) => {
         if (data.token) sessionStorage.token = data.token;
+        sessionStorage.isLoggedIn = true;
+        props.setIsLoggedIn(true);
         props.history.push("/");
       })
       .catch((err) => console.log(err));
