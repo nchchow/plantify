@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Login = () => {
+const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,7 +16,10 @@ const Login = () => {
         email,
         password,
       })
-      .then((res) => console.log("submited, res: ", res))
+      .then(({ data }) => {
+        if (data.token) sessionStorage.token = data.token;
+        props.history.push("/");
+      })
       .catch((err) => console.log(err));
   };
 
