@@ -60,7 +60,6 @@ router.route("/login").post(function (req, res, next) {
         { user_id: user.user_id },
         process.env.SESSION_SECRET
       );
-      // const token = "token";
       return res.status(200).json({ token: token });
     });
   })(req, res, next);
