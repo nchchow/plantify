@@ -26,17 +26,25 @@ a {
   text-decoration: none;
 }
 
-.button--primary, .app-header__nav--button, .app-header__nav--button--upload, .app-header__nav--button--signup, .app-header__nav--button--login, .upload--form .chooseFileButton, .upload--form__submit-button {
+.button, .app-header__nav--button {
   border: none;
-  background: #000;
-  color: #fff;
   font-family: "Roboto Condensed", sans-serif;
   outline: none;
   cursor: pointer;
 }
 
-.button--primary:hover, .app-header__nav--button:hover, .app-header__nav--button--upload:hover, .app-header__nav--button--signup:hover, .app-header__nav--button--login:hover, .upload--form .chooseFileButton:hover, .upload--form__submit-button:hover {
+.button--primary, .app-header__nav--button--upload, .app-header__nav--button--login, .upload--form .chooseFileButton, .upload--form__submit-button {
+  background: #000;
+  color: #fff;
+}
+
+.button--primary:hover, .app-header__nav--button--upload:hover, .app-header__nav--button--login:hover, .upload--form .chooseFileButton:hover, .upload--form__submit-button:hover {
   background: rgba(0, 0, 0, 0.7);
+}
+
+.button--secondary, .app-header__nav--button--signup, .app-header__nav--button--signout {
+  background: #fff;
+  color: #000;
 }
 
 .modal, .details-modal, .matched-modal {
@@ -262,22 +270,13 @@ a {
   display: flex;
 }
 
-.app-header__nav--button, .app-header__nav--button--upload, .app-header__nav--button--signup, .app-header__nav--button--login {
+.app-header__nav--button {
   display: inline-block;
   text-align: center;
   width: 100px;
   height: 40px;
   line-height: 40px;
   border-radius: 20px;
-}
-
-.app-header__nav--button--signup {
-  background: #fff;
-  color: #000;
-}
-
-.app-header__nav--button--signup:hover {
-  background: #fff;
 }
 
 .hero {

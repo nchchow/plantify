@@ -20,16 +20,24 @@ a {
   text-decoration: none;
 }
 
-.button--primary {
+.button {
   border: none;
-  background: #000;
-  color: #fff;
   font-family: $font-main;
   outline: none;
   cursor: pointer;
 
-  &:hover {
-    background: rgba(0, 0, 0, 0.7);
+  &--primary {
+    background: #000;
+    color: #fff;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  &--secondary {
+    background: #fff;
+    color: #000;
   }
 }
 

@@ -40,7 +40,7 @@
     }
 
     &--button {
-      @extend .button--primary;
+      @extend .button;
       display: inline-block;
       text-align: center;
       width: 100px;
@@ -49,21 +49,19 @@
       border-radius: 20px;
 
       &--upload {
-        @extend .app-header__nav--button;
+        @extend .button--primary;
       }
 
       &--signup {
-        @extend .app-header__nav--button;
-        background: #fff;
-        color: #000;
-
-        &:hover {
-          background: #fff;
-        }
+        @extend .button--secondary;
       }
 
       &--login {
-        @extend .app-header__nav--button;
+        @extend .button--primary;
+      }
+
+      &--signout {
+        @extend .button--secondary;
       }
     }
   }

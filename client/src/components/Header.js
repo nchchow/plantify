@@ -11,21 +11,31 @@ const Header = ({ isLoggedIn }) => {
         <nav className="app-header__nav">
           <ul className="app-header__nav--list">
             {isLoggedIn && (
-              <li className="app-header__nav--item">
-                <NavLink
-                  to="/upload/new"
-                  className="app-header__nav--button--upload"
-                >
-                  Upload
-                </NavLink>
-              </li>
+              <>
+                <li className="app-header__nav--item">
+                  <NavLink
+                    to="/signout"
+                    className="app-header__nav--button app-header__nav--button--signout"
+                  >
+                    Sign Out
+                  </NavLink>
+                </li>
+                <li className="app-header__nav--item">
+                  <NavLink
+                    to="/upload/new"
+                    className="app-header__nav--button app-header__nav--button--upload"
+                  >
+                    Upload
+                  </NavLink>
+                </li>
+              </>
             )}
             {!isLoggedIn && (
               <>
-                <li>
+                <li className="app-header__nav--item">
                   <NavLink
                     to="/signup"
-                    className="app-header__nav--button--signup"
+                    className="app-header__nav--button app-header__nav--button--signup"
                   >
                     Sign Up
                   </NavLink>
@@ -33,7 +43,7 @@ const Header = ({ isLoggedIn }) => {
                 <li className="app-header__nav--item">
                   <NavLink
                     to="/login"
-                    className="app-header__nav--button--login"
+                    className="app-header__nav--button app-header__nav--button--login"
                   >
                     Log In
                   </NavLink>
