@@ -54,16 +54,16 @@
 
       &--signup {
         @extend .app-header__nav--button;
-      }
-
-      &--login {
-        @extend .app-header__nav--button;
         background: #fff;
         color: #000;
 
         &:hover {
           background: #fff;
         }
+      }
+
+      &--login {
+        @extend .app-header__nav--button;
       }
     }
   }

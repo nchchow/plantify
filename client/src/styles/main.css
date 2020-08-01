@@ -271,12 +271,12 @@ a {
   border-radius: 20px;
 }
 
-.app-header__nav--button--login {
+.app-header__nav--button--signup {
   background: #fff;
   color: #000;
 }
 
-.app-header__nav--button--login:hover {
+.app-header__nav--button--signup:hover {
   background: #fff;
 }
 
