@@ -17,7 +17,6 @@ const {
 
 // get all uploads
 router.route("/").get((req, res) => {
-  console.log("get uploads route");
   getUploads(req.query)
     .then((uploads) => {
       res.status(200).json(uploads);
