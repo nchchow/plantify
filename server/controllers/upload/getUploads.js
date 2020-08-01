@@ -6,7 +6,7 @@ const getUploads = async (query) => {
     withRelated: ["user"],
   });
   // return new array from deserialized objects
-  return models.map(({ attributes }) => {
+  const arr = models.map(({ attributes }) => {
     const { image_url, liked_by } = attributes;
     return {
       ...attributes,
@@ -14,6 +14,7 @@ const getUploads = async (query) => {
       liked_by: JSON.parse(liked_by),
     };
   });
+  return arr;
 };
 
 const getUploadById = async (uploadId) => {
