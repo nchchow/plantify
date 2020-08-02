@@ -42,7 +42,7 @@ a {
   background: rgba(0, 0, 0, 0.7);
 }
 
-.button--secondary, .app-header__nav--button--signup, .app-header__nav--button--signout {
+.button--secondary, .app-header__nav--button--signup, .app-header__nav--button--logout {
   background: #fff;
   color: #000;
 }
@@ -277,6 +277,14 @@ a {
   height: 40px;
   line-height: 40px;
   border-radius: 20px;
+}
+
+.app-header__nav--button--signup {
+  background: inherit;
+}
+
+.app-header__nav--button--logout {
+  background: inherit;
 }
 
 .hero {

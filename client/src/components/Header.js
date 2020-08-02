@@ -1,7 +1,15 @@
 import React from "react";
+import axios from "axios";
 import { NavLink } from "react-router-dom";
 
-const Header = ({ isLoggedIn }) => {
+const Header = ({ isLoggedIn, setIsLoggedIn }) => {
+  const handleLogout = (event) => {
+    axios.get("/logout").then((res) => {
+      sessionStorage.isLoggedIn = false;
+      setIsLoggedIn(false);
+    });
+  };
+
   return (
     <header className="app-header">
       <div className="container--fluid flex-center">
@@ -13,12 +21,12 @@ const Header = ({ isLoggedIn }) => {
             {isLoggedIn && (
               <>
                 <li className="app-header__nav--item">
-                  <NavLink
-                    to="/signout"
-                    className="app-header__nav--button app-header__nav--button--signout"
+                  <a
+                    className="app-header__nav--button app-header__nav--button--logout"
+                    onClick={handleLogout}
                   >
-                    Sign Out
-                  </NavLink>
+                    Log Out
+                  </a>
                 </li>
                 <li className="app-header__nav--item">
                   <NavLink

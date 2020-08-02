@@ -54,14 +54,16 @@
 
       &--signup {
         @extend .button--secondary;
+        background: inherit;
       }
 
       &--login {
         @extend .button--primary;
       }
 
-      &--signout {
+      &--logout {
         @extend .button--secondary;
+        background: inherit;
       }
     }
   }

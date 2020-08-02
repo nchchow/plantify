@@ -12,11 +12,13 @@ import Login from "./pages/Login";
 import Upload from "./pages/Upload";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.isLoggedIn);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    JSON.parse(sessionStorage.isLoggedIn)
+  );
 
   return (
     <Router>
-      <Header isLoggedIn={isLoggedIn} />
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Switch>
         <Route path="/" exact>
           <Redirect to="/feed" />
